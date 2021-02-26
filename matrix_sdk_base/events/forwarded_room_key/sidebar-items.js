@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["ForwardedRoomKeyToDeviceEventContent","The payload for `ForwardedRoomKeyEvent`."]]});

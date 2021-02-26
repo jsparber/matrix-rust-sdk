@@ -1,0 +1,1 @@
+initSidebarItems({"mod":[["get_capabilities","GET /_matrix/client/r0/capabilities"]]});

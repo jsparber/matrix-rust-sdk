@@ -1,0 +1,3 @@
+(function() {var implementors = {};
+implementors["matrix_sdk_crypto"] = [{"text":"impl <a class=\"trait\" href=\"https://docs.rs/zeroize/1.2.0/zeroize/trait.Zeroize.html\" title=\"trait zeroize::Zeroize\">Zeroize</a> for <a class=\"struct\" href=\"matrix_sdk_crypto/store/struct.PickleKey.html\" title=\"struct matrix_sdk_crypto::store::PickleKey\">PickleKey</a>","synthetic":false,"types":["matrix_sdk_crypto::store::pickle_key::PickleKey"]}];
+if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

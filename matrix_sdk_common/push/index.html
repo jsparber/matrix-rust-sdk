@@ -1,0 +1,67 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Common types for the push notifications module"><meta name="keywords" content="rust, rustlang, rust-lang, push"><title>matrix_sdk_common::push - Rust</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings"></script><script src="../../storage.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+<link rel="alternate icon" type="image/png" href="../../favicon-16x16.png">
+<link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc mod"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../matrix_sdk_common/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a><p class="location">Module push</p><div class="sidebar-elems"><div class="block items"><ul><li><a href="#structs">Structs</a></li><li><a href="#enums">Enums</a></li><li><a href="#traits">Traits</a></li></ul></div><p class="location"><a href="../index.html">matrix_sdk_common</a></p><div id="sidebar-vars" data-name="push" data-ty="mod" data-relpath="../"></div><script defer src="../sidebar-items.js"></script></div></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu"><img src="../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" class="help-button">?</button>
+                <a id="settings-menu" href="../../settings.html"><img src="../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><h1 class="fqn"><span class="in-band">Module <a href="../index.html">matrix_sdk_common</a>::<wbr><a class="mod" href="">push</a></span><span class="out-of-band"><span id="render-detail"><a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span></span></h1><div class="docblock"><p>Common types for the <a href="https://matrix.org/docs/spec/client_server/r0.6.1#id89">push notifications module</a></p>
+<h2 id="understanding-the-types-of-this-module" class="section-header"><a href="#understanding-the-types-of-this-module">Understanding the types of this module</a></h2>
+<p>Push rules are grouped in <code>RuleSet</code>s, and are grouped in five kinds (for
+more details about the different kind of rules, see the <code>Ruleset</code> documentation,
+or the specification). These five kinds are:</p>
+<ul>
+<li>content rules</li>
+<li>override rules</li>
+<li>underride rules</li>
+<li>room rules</li>
+<li>sender rules</li>
+</ul>
+<p>Each of these kind of rule has a corresponding type that is
+just a wrapper around another type:</p>
+<ul>
+<li><code>SimplePushRule</code> for room and sender rules</li>
+<li><code>ConditionalPushRule</code> for override and underride rules: push rules that may depend on a
+condition</li>
+<li><code>PatternedPushRules</code> for content rules, that can filter events based on a pattern to trigger
+the rule or not</li>
+</ul>
+<p>Having these wrapper types allows to tell at the type level what kind of rule you are
+handling, and makes sure the <code>Ruleset::add</code> method adds your rule to the correct field
+of <code>Ruleset</code>, and that rules that are not of the same kind are never mixed even if they share
+the same representation.</p>
+<p>It is still possible to write code that is generic over a representation by manipulating
+<code>SimplePushRule</code>, <code>ConditonalPushRule</code> or <code>PatternedPushRule</code> directly, instead of the wrappers.</p>
+<p>There is also the <code>AnyPushRule</code> type that is the most generic form of push rule, with all
+the possible fields.</p>
+</div><h2 id="structs" class="section-header"><a href="#structs">Structs</a></h2>
+<table><tr class="module-item"><td><a class="struct" href="struct.AnyPushRule.html" title="matrix_sdk_common::push::AnyPushRule struct">AnyPushRule</a></td><td class="docblock-short"><p>Like <code>SimplePushRule</code>, but may represent any kind of push rule
+thanks to <code>pattern</code> and <code>conditions</code> being optional.</p>
+</td></tr><tr class="module-item"><td><a class="struct" href="struct.ConditionalPushRule.html" title="matrix_sdk_common::push::ConditionalPushRule struct">ConditionalPushRule</a></td><td class="docblock-short"><p>Like <code>SimplePushRule</code>, but with an additional <code>conditions</code> field.</p>
+</td></tr><tr class="module-item"><td><a class="struct" href="struct.ConditionalPushRuleInit.html" title="matrix_sdk_common::push::ConditionalPushRuleInit struct">ConditionalPushRuleInit</a></td><td class="docblock-short"><p>Initial set of fields of <code>ConditionalPushRule</code>.</p>
+</td></tr><tr class="module-item"><td><a class="struct" href="struct.ContentPushRule.html" title="matrix_sdk_common::push::ContentPushRule struct">ContentPushRule</a></td><td class="docblock-short"><p>Wrapper type to disambiguate the kind of the wrapped rule</p>
+</td></tr><tr class="module-item"><td><a class="struct" href="struct.MissingConditionsError.html" title="matrix_sdk_common::push::MissingConditionsError struct">MissingConditionsError</a></td><td class="docblock-short"><p>An error that happens when <code>AnyPushRule</code> cannot
+be converted into <code>ConditionalPushRule</code></p>
+</td></tr><tr class="module-item"><td><a class="struct" href="struct.MissingPatternError.html" title="matrix_sdk_common::push::MissingPatternError struct">MissingPatternError</a></td><td class="docblock-short"><p>An error that happens when <code>AnyPushRule</code> cannot
+be converted into <code>PatternedPushRule</code></p>
+</td></tr><tr class="module-item"><td><a class="struct" href="struct.OverridePushRule.html" title="matrix_sdk_common::push::OverridePushRule struct">OverridePushRule</a></td><td class="docblock-short"><p>Wrapper type to disambiguate the kind of the wrapped rule</p>
+</td></tr><tr class="module-item"><td><a class="struct" href="struct.PatternedPushRule.html" title="matrix_sdk_common::push::PatternedPushRule struct">PatternedPushRule</a></td><td class="docblock-short"><p>Like <code>SimplePushRule</code>, but with an additional <code>pattern</code> field.</p>
+</td></tr><tr class="module-item"><td><a class="struct" href="struct.PatternedPushRuleInit.html" title="matrix_sdk_common::push::PatternedPushRuleInit struct">PatternedPushRuleInit</a></td><td class="docblock-short"><p>Initial set of fields of <code>PatterenedPushRule</code>.</p>
+</td></tr><tr class="module-item"><td><a class="struct" href="struct.PusherData.html" title="matrix_sdk_common::push::PusherData struct">PusherData</a></td><td class="docblock-short"><p>Information for the pusher implementation itself.</p>
+</td></tr><tr class="module-item"><td><a class="struct" href="struct.RoomMemberCountIs.html" title="matrix_sdk_common::push::RoomMemberCountIs struct">RoomMemberCountIs</a></td><td class="docblock-short"><p>A decimal integer optionally prefixed by one of <code>==</code>, <code>&lt;</code>, <code>&gt;</code>, <code>&gt;=</code> or <code>&lt;=</code>.</p>
+</td></tr><tr class="module-item"><td><a class="struct" href="struct.RoomPushRule.html" title="matrix_sdk_common::push::RoomPushRule struct">RoomPushRule</a></td><td class="docblock-short"><p>Wrapper type to disambiguate the kind of the wrapped rule</p>
+</td></tr><tr class="module-item"><td><a class="struct" href="struct.Ruleset.html" title="matrix_sdk_common::push::Ruleset struct">Ruleset</a></td><td class="docblock-short"><p>A push ruleset scopes a set of rules according to some criteria.</p>
+</td></tr><tr class="module-item"><td><a class="struct" href="struct.RulesetIter.html" title="matrix_sdk_common::push::RulesetIter struct">RulesetIter</a></td><td class="docblock-short"><p>Iterator type for <code>Ruleset</code></p>
+</td></tr><tr class="module-item"><td><a class="struct" href="struct.SenderPushRule.html" title="matrix_sdk_common::push::SenderPushRule struct">SenderPushRule</a></td><td class="docblock-short"><p>Wrapper type to disambiguate the kind of the wrapped rule</p>
+</td></tr><tr class="module-item"><td><a class="struct" href="struct.SimplePushRule.html" title="matrix_sdk_common::push::SimplePushRule struct">SimplePushRule</a></td><td class="docblock-short"><p>A push rule is a single rule that states under what conditions an event should be passed onto a
+push gateway and how the notification should be presented.</p>
+</td></tr><tr class="module-item"><td><a class="struct" href="struct.SimplePushRuleInit.html" title="matrix_sdk_common::push::SimplePushRuleInit struct">SimplePushRuleInit</a></td><td class="docblock-short"><p>Initial set of fields of <code>SimplePushRule</code>.</p>
+</td></tr><tr class="module-item"><td><a class="struct" href="struct.UnderridePushRule.html" title="matrix_sdk_common::push::UnderridePushRule struct">UnderridePushRule</a></td><td class="docblock-short"><p>Wrapper type to disambiguate the kind of the wrapped rule</p>
+</td></tr></table><h2 id="enums" class="section-header"><a href="#enums">Enums</a></h2>
+<table><tr class="module-item"><td><a class="enum" href="enum.Action.html" title="matrix_sdk_common::push::Action enum">Action</a></td><td class="docblock-short"><p>This represents the different actions that should be taken when a rule is matched, and
+controls how notifications are delivered to the client.</p>
+</td></tr><tr class="module-item"><td><a class="enum" href="enum.ComparisonOperator.html" title="matrix_sdk_common::push::ComparisonOperator enum">ComparisonOperator</a></td><td class="docblock-short"><p>One of <code>==</code>, <code>&lt;</code>, <code>&gt;</code>, <code>&gt;=</code> or <code>&lt;=</code>.</p>
+</td></tr><tr class="module-item"><td><a class="enum" href="enum.PushCondition.html" title="matrix_sdk_common::push::PushCondition enum">PushCondition</a></td><td class="docblock-short"><p>A condition that must apply for an associated push rule’s action to be taken.</p>
+</td></tr><tr class="module-item"><td><a class="enum" href="enum.PushFormat.html" title="matrix_sdk_common::push::PushFormat enum">PushFormat</a></td><td class="docblock-short"><p>A special format that the homeserver should use when sending notifications to a Push Gateway.
+Currently, only “event_id_only” is supported as of <a href="https://matrix.org/docs/spec/push_gateway/r0.1.1#homeserver-behaviour">Push Gateway API r0.1.1</a>.</p>
+</td></tr><tr class="module-item"><td><a class="enum" href="enum.Tweak.html" title="matrix_sdk_common::push::Tweak enum">Tweak</a></td><td class="docblock-short"><p>The <code>set_tweak</code> action.</p>
+</td></tr></table><h2 id="traits" class="section-header"><a href="#traits">Traits</a></h2>
+<table><tr class="module-item"><td><a class="trait" href="trait.RulesetMember.html" title="matrix_sdk_common::push::RulesetMember trait">RulesetMember</a></td><td class="docblock-short"><p>A trait for types that can be added in a Ruleset</p>
+</td></tr></table></section><section id="search" class="content hidden"></section><section class="footer"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="matrix_sdk_common"></div>
+    <script src="../../main.js"></script><script defer src="../../search-index.js"></script></body></html>
