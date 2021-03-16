@@ -1,7 +1,7 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `matrix_sdk/src/client.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>client.rs - source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings"></script><script src="../../storage.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `matrix_sdk/src/client.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>client.rs - source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings"></script><script src="../../storage.js"></script><script src="../../crates.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../favicon.svg">
 <link rel="alternate icon" type="image/png" href="../../favicon-16x16.png">
-<link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../matrix_sdk/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu"><img src="../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" class="help-button">?</button>
-                <a id="settings-menu" href="../../settings.html"><img src="../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">   1</span>
+<link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../matrix_sdk/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu"><img src="../../brush.svg" width="18" height="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" class="help-button">?</button>
+                <a id="settings-menu" href="../../settings.html"><img src="../../wheel.svg" width="18" height="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">   1</span>
 <span id="2">   2</span>
 <span id="3">   3</span>
 <span id="4">   4</span>
@@ -2808,298 +2808,6 @@
 <span id="2805">2805</span>
 <span id="2806">2806</span>
 <span id="2807">2807</span>
-<span id="2808">2808</span>
-<span id="2809">2809</span>
-<span id="2810">2810</span>
-<span id="2811">2811</span>
-<span id="2812">2812</span>
-<span id="2813">2813</span>
-<span id="2814">2814</span>
-<span id="2815">2815</span>
-<span id="2816">2816</span>
-<span id="2817">2817</span>
-<span id="2818">2818</span>
-<span id="2819">2819</span>
-<span id="2820">2820</span>
-<span id="2821">2821</span>
-<span id="2822">2822</span>
-<span id="2823">2823</span>
-<span id="2824">2824</span>
-<span id="2825">2825</span>
-<span id="2826">2826</span>
-<span id="2827">2827</span>
-<span id="2828">2828</span>
-<span id="2829">2829</span>
-<span id="2830">2830</span>
-<span id="2831">2831</span>
-<span id="2832">2832</span>
-<span id="2833">2833</span>
-<span id="2834">2834</span>
-<span id="2835">2835</span>
-<span id="2836">2836</span>
-<span id="2837">2837</span>
-<span id="2838">2838</span>
-<span id="2839">2839</span>
-<span id="2840">2840</span>
-<span id="2841">2841</span>
-<span id="2842">2842</span>
-<span id="2843">2843</span>
-<span id="2844">2844</span>
-<span id="2845">2845</span>
-<span id="2846">2846</span>
-<span id="2847">2847</span>
-<span id="2848">2848</span>
-<span id="2849">2849</span>
-<span id="2850">2850</span>
-<span id="2851">2851</span>
-<span id="2852">2852</span>
-<span id="2853">2853</span>
-<span id="2854">2854</span>
-<span id="2855">2855</span>
-<span id="2856">2856</span>
-<span id="2857">2857</span>
-<span id="2858">2858</span>
-<span id="2859">2859</span>
-<span id="2860">2860</span>
-<span id="2861">2861</span>
-<span id="2862">2862</span>
-<span id="2863">2863</span>
-<span id="2864">2864</span>
-<span id="2865">2865</span>
-<span id="2866">2866</span>
-<span id="2867">2867</span>
-<span id="2868">2868</span>
-<span id="2869">2869</span>
-<span id="2870">2870</span>
-<span id="2871">2871</span>
-<span id="2872">2872</span>
-<span id="2873">2873</span>
-<span id="2874">2874</span>
-<span id="2875">2875</span>
-<span id="2876">2876</span>
-<span id="2877">2877</span>
-<span id="2878">2878</span>
-<span id="2879">2879</span>
-<span id="2880">2880</span>
-<span id="2881">2881</span>
-<span id="2882">2882</span>
-<span id="2883">2883</span>
-<span id="2884">2884</span>
-<span id="2885">2885</span>
-<span id="2886">2886</span>
-<span id="2887">2887</span>
-<span id="2888">2888</span>
-<span id="2889">2889</span>
-<span id="2890">2890</span>
-<span id="2891">2891</span>
-<span id="2892">2892</span>
-<span id="2893">2893</span>
-<span id="2894">2894</span>
-<span id="2895">2895</span>
-<span id="2896">2896</span>
-<span id="2897">2897</span>
-<span id="2898">2898</span>
-<span id="2899">2899</span>
-<span id="2900">2900</span>
-<span id="2901">2901</span>
-<span id="2902">2902</span>
-<span id="2903">2903</span>
-<span id="2904">2904</span>
-<span id="2905">2905</span>
-<span id="2906">2906</span>
-<span id="2907">2907</span>
-<span id="2908">2908</span>
-<span id="2909">2909</span>
-<span id="2910">2910</span>
-<span id="2911">2911</span>
-<span id="2912">2912</span>
-<span id="2913">2913</span>
-<span id="2914">2914</span>
-<span id="2915">2915</span>
-<span id="2916">2916</span>
-<span id="2917">2917</span>
-<span id="2918">2918</span>
-<span id="2919">2919</span>
-<span id="2920">2920</span>
-<span id="2921">2921</span>
-<span id="2922">2922</span>
-<span id="2923">2923</span>
-<span id="2924">2924</span>
-<span id="2925">2925</span>
-<span id="2926">2926</span>
-<span id="2927">2927</span>
-<span id="2928">2928</span>
-<span id="2929">2929</span>
-<span id="2930">2930</span>
-<span id="2931">2931</span>
-<span id="2932">2932</span>
-<span id="2933">2933</span>
-<span id="2934">2934</span>
-<span id="2935">2935</span>
-<span id="2936">2936</span>
-<span id="2937">2937</span>
-<span id="2938">2938</span>
-<span id="2939">2939</span>
-<span id="2940">2940</span>
-<span id="2941">2941</span>
-<span id="2942">2942</span>
-<span id="2943">2943</span>
-<span id="2944">2944</span>
-<span id="2945">2945</span>
-<span id="2946">2946</span>
-<span id="2947">2947</span>
-<span id="2948">2948</span>
-<span id="2949">2949</span>
-<span id="2950">2950</span>
-<span id="2951">2951</span>
-<span id="2952">2952</span>
-<span id="2953">2953</span>
-<span id="2954">2954</span>
-<span id="2955">2955</span>
-<span id="2956">2956</span>
-<span id="2957">2957</span>
-<span id="2958">2958</span>
-<span id="2959">2959</span>
-<span id="2960">2960</span>
-<span id="2961">2961</span>
-<span id="2962">2962</span>
-<span id="2963">2963</span>
-<span id="2964">2964</span>
-<span id="2965">2965</span>
-<span id="2966">2966</span>
-<span id="2967">2967</span>
-<span id="2968">2968</span>
-<span id="2969">2969</span>
-<span id="2970">2970</span>
-<span id="2971">2971</span>
-<span id="2972">2972</span>
-<span id="2973">2973</span>
-<span id="2974">2974</span>
-<span id="2975">2975</span>
-<span id="2976">2976</span>
-<span id="2977">2977</span>
-<span id="2978">2978</span>
-<span id="2979">2979</span>
-<span id="2980">2980</span>
-<span id="2981">2981</span>
-<span id="2982">2982</span>
-<span id="2983">2983</span>
-<span id="2984">2984</span>
-<span id="2985">2985</span>
-<span id="2986">2986</span>
-<span id="2987">2987</span>
-<span id="2988">2988</span>
-<span id="2989">2989</span>
-<span id="2990">2990</span>
-<span id="2991">2991</span>
-<span id="2992">2992</span>
-<span id="2993">2993</span>
-<span id="2994">2994</span>
-<span id="2995">2995</span>
-<span id="2996">2996</span>
-<span id="2997">2997</span>
-<span id="2998">2998</span>
-<span id="2999">2999</span>
-<span id="3000">3000</span>
-<span id="3001">3001</span>
-<span id="3002">3002</span>
-<span id="3003">3003</span>
-<span id="3004">3004</span>
-<span id="3005">3005</span>
-<span id="3006">3006</span>
-<span id="3007">3007</span>
-<span id="3008">3008</span>
-<span id="3009">3009</span>
-<span id="3010">3010</span>
-<span id="3011">3011</span>
-<span id="3012">3012</span>
-<span id="3013">3013</span>
-<span id="3014">3014</span>
-<span id="3015">3015</span>
-<span id="3016">3016</span>
-<span id="3017">3017</span>
-<span id="3018">3018</span>
-<span id="3019">3019</span>
-<span id="3020">3020</span>
-<span id="3021">3021</span>
-<span id="3022">3022</span>
-<span id="3023">3023</span>
-<span id="3024">3024</span>
-<span id="3025">3025</span>
-<span id="3026">3026</span>
-<span id="3027">3027</span>
-<span id="3028">3028</span>
-<span id="3029">3029</span>
-<span id="3030">3030</span>
-<span id="3031">3031</span>
-<span id="3032">3032</span>
-<span id="3033">3033</span>
-<span id="3034">3034</span>
-<span id="3035">3035</span>
-<span id="3036">3036</span>
-<span id="3037">3037</span>
-<span id="3038">3038</span>
-<span id="3039">3039</span>
-<span id="3040">3040</span>
-<span id="3041">3041</span>
-<span id="3042">3042</span>
-<span id="3043">3043</span>
-<span id="3044">3044</span>
-<span id="3045">3045</span>
-<span id="3046">3046</span>
-<span id="3047">3047</span>
-<span id="3048">3048</span>
-<span id="3049">3049</span>
-<span id="3050">3050</span>
-<span id="3051">3051</span>
-<span id="3052">3052</span>
-<span id="3053">3053</span>
-<span id="3054">3054</span>
-<span id="3055">3055</span>
-<span id="3056">3056</span>
-<span id="3057">3057</span>
-<span id="3058">3058</span>
-<span id="3059">3059</span>
-<span id="3060">3060</span>
-<span id="3061">3061</span>
-<span id="3062">3062</span>
-<span id="3063">3063</span>
-<span id="3064">3064</span>
-<span id="3065">3065</span>
-<span id="3066">3066</span>
-<span id="3067">3067</span>
-<span id="3068">3068</span>
-<span id="3069">3069</span>
-<span id="3070">3070</span>
-<span id="3071">3071</span>
-<span id="3072">3072</span>
-<span id="3073">3073</span>
-<span id="3074">3074</span>
-<span id="3075">3075</span>
-<span id="3076">3076</span>
-<span id="3077">3077</span>
-<span id="3078">3078</span>
-<span id="3079">3079</span>
-<span id="3080">3080</span>
-<span id="3081">3081</span>
-<span id="3082">3082</span>
-<span id="3083">3083</span>
-<span id="3084">3084</span>
-<span id="3085">3085</span>
-<span id="3086">3086</span>
-<span id="3087">3087</span>
-<span id="3088">3088</span>
-<span id="3089">3089</span>
-<span id="3090">3090</span>
-<span id="3091">3091</span>
-<span id="3092">3092</span>
-<span id="3093">3093</span>
-<span id="3094">3094</span>
-<span id="3095">3095</span>
-<span id="3096">3096</span>
-<span id="3097">3097</span>
-<span id="3098">3098</span>
-<span id="3099">3099</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Copyright 2020 Damir Jelić</span>
 <span class="comment">// Copyright 2020 The Matrix.org Foundation C.I.C.</span>
@@ -3143,14 +2851,14 @@
 <span class="kw">use</span> <span class="ident">tracing</span>::{<span class="ident">error</span>, <span class="ident">info</span>, <span class="ident">instrument</span>};
 
 <span class="kw">use</span> <span class="ident">matrix_sdk_base</span>::{
-    <span class="ident">deserialized_responses</span>::{<span class="ident">MembersResponse</span>, <span class="ident">SyncResponse</span>},
-    <span class="ident">BaseClient</span>, <span class="ident">BaseClientConfig</span>, <span class="ident">EventHandler</span>, <span class="ident">InvitedRoom</span>, <span class="ident">JoinedRoom</span>, <span class="ident">LeftRoom</span>, <span class="ident">Session</span>, <span class="ident">Store</span>,
+    <span class="ident">deserialized_responses</span>::<span class="ident">SyncResponse</span>, <span class="ident">BaseClient</span>, <span class="ident">BaseClientConfig</span>, <span class="ident">EventHandler</span>, <span class="ident">Session</span>,
+    <span class="ident">Store</span>,
 };
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;encryption&quot;</span>)]</span>
 <span class="kw">use</span> <span class="ident">matrix_sdk_base</span>::<span class="ident">crypto</span>::{
     <span class="ident">decrypt_key_export</span>, <span class="ident">encrypt_key_export</span>, <span class="ident">olm</span>::<span class="ident">InboundGroupSession</span>, <span class="ident">store</span>::<span class="ident">CryptoStoreError</span>,
-    <span class="ident">AttachmentEncryptor</span>, <span class="ident">OutgoingRequests</span>, <span class="ident">RoomMessageRequest</span>, <span class="ident">ToDeviceRequest</span>,
+    <span class="ident">OutgoingRequests</span>, <span class="ident">RoomMessageRequest</span>, <span class="ident">ToDeviceRequest</span>,
 };
 
 <span class="doccomment">/// Enum controlling if a loop running callbacks should continue or abort.</span>
@@ -3174,34 +2882,15 @@
         <span class="ident">directory</span>::{<span class="ident">get_public_rooms</span>, <span class="ident">get_public_rooms_filtered</span>},
         <span class="ident">filter</span>::{<span class="ident">create_filter</span>::<span class="ident">Request</span> <span class="kw">as</span> <span class="ident">FilterUploadRequest</span>, <span class="ident">FilterDefinition</span>},
         <span class="ident">media</span>::<span class="ident">create_content</span>,
-        <span class="ident">membership</span>::{
-            <span class="ident">ban_user</span>, <span class="ident">forget_room</span>, <span class="ident">get_member_events</span>,
-            <span class="ident">invite_user</span>::{<span class="self">self</span>, <span class="ident">InvitationRecipient</span>},
-            <span class="ident">join_room_by_id</span>, <span class="ident">join_room_by_id_or_alias</span>, <span class="ident">kick_user</span>, <span class="ident">leave_room</span>, <span class="ident">Invite3pid</span>,
-        },
-        <span class="ident">message</span>::{<span class="ident">get_message_events</span>, <span class="ident">send_message_event</span>},
+        <span class="ident">membership</span>::{<span class="ident">join_room_by_id</span>, <span class="ident">join_room_by_id_or_alias</span>},
+        <span class="ident">message</span>::<span class="ident">send_message_event</span>,
         <span class="ident">profile</span>::{<span class="ident">get_avatar_url</span>, <span class="ident">get_display_name</span>, <span class="ident">set_avatar_url</span>, <span class="ident">set_display_name</span>},
-        <span class="ident">read_marker</span>::<span class="ident">set_read_marker</span>,
-        <span class="ident">receipt</span>::<span class="ident">create_receipt</span>,
         <span class="ident">room</span>::<span class="ident">create_room</span>,
         <span class="ident">session</span>::<span class="ident">login</span>,
         <span class="ident">sync</span>::<span class="ident">sync_events</span>,
-        <span class="ident">typing</span>::<span class="ident">create_typing_event</span>::{
-            <span class="ident">Request</span> <span class="kw">as</span> <span class="ident">TypingRequest</span>, <span class="ident">Response</span> <span class="kw">as</span> <span class="ident">TypingResponse</span>, <span class="ident">Typing</span>,
-        },
         <span class="ident">uiaa</span>::<span class="ident">AuthData</span>,
     },
     <span class="ident">assign</span>,
-    <span class="ident">events</span>::{
-        <span class="ident">room</span>::{
-            <span class="ident">message</span>::{
-                <span class="ident">AudioMessageEventContent</span>, <span class="ident">FileMessageEventContent</span>, <span class="ident">ImageMessageEventContent</span>,
-                <span class="ident">MessageEventContent</span>, <span class="ident">VideoMessageEventContent</span>,
-            },
-            <span class="ident">EncryptedFile</span>,
-        },
-        <span class="ident">AnyMessageEventContent</span>,
-    },
     <span class="ident">identifiers</span>::{<span class="ident">DeviceIdBox</span>, <span class="ident">EventId</span>, <span class="ident">RoomId</span>, <span class="ident">RoomIdOrAliasId</span>, <span class="ident">ServerName</span>, <span class="ident">UserId</span>},
     <span class="ident">instant</span>::{<span class="ident">Duration</span>, <span class="ident">Instant</span>},
     <span class="ident">presence</span>::<span class="ident">PresenceState</span>,
@@ -3223,7 +2912,7 @@
 <span class="kw">use</span> <span class="kw">crate</span>::{
     <span class="ident">error</span>::<span class="ident">HttpError</span>,
     <span class="ident">http_client</span>::{<span class="ident">client_with_config</span>, <span class="ident">HttpClient</span>, <span class="ident">HttpSend</span>},
-    <span class="ident">Error</span>, <span class="ident">OutgoingRequest</span>, <span class="prelude-ty">Result</span>,
+    <span class="ident">room</span>, <span class="ident">Error</span>, <span class="ident">OutgoingRequest</span>, <span class="prelude-ty">Result</span>,
 };
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;encryption&quot;</span>)]</span>
@@ -3256,7 +2945,7 @@
     <span class="doccomment">/// Locks making sure we only have one group session sharing request in</span>
     <span class="doccomment">/// flight per room.</span>
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;encryption&quot;</span>)]</span>
-    <span class="ident">group_session_locks</span>: <span class="ident">DashMap</span><span class="op">&lt;</span><span class="ident">RoomId</span>, <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Mutex</span><span class="op">&lt;</span>()<span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">group_session_locks</span>: <span class="ident">DashMap</span><span class="op">&lt;</span><span class="ident">RoomId</span>, <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Mutex</span><span class="op">&lt;</span>()<span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>,
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;encryption&quot;</span>)]</span>
     <span class="doccomment">/// Lock making sure we&#39;re only doing one key claim request at a time.</span>
     <span class="ident">key_claim_lock</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Mutex</span><span class="op">&lt;</span>()<span class="op">&gt;</span><span class="op">&gt;</span>,
@@ -3663,31 +3352,53 @@
         <span class="self">self</span>.<span class="ident">base_client</span>.<span class="ident">set_event_handler</span>(<span class="ident">handler</span>).<span class="kw">await</span>;
     }
 
-    <span class="doccomment">/// Returns the joined rooms this client knows about.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">joined_rooms</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">JoinedRoom</span><span class="op">&gt;</span> {
+    <span class="doccomment">/// Get all the rooms the client knows about.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This will return the list of joined, invited, and left rooms.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">rooms</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">room</span>::<span class="ident">Common</span><span class="op">&gt;</span> {
         <span class="self">self</span>.<span class="ident">store</span>()
             .<span class="ident">get_rooms</span>()
             .<span class="ident">into_iter</span>()
-            .<span class="ident">filter_map</span>(<span class="op">|</span><span class="ident">r</span><span class="op">|</span> <span class="ident">r</span>.<span class="ident">joined</span>())
+            .<span class="ident">map</span>(<span class="op">|</span><span class="ident">room</span><span class="op">|</span> <span class="ident">room</span>::<span class="ident">Common</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="ident">clone</span>(), <span class="ident">room</span>))
+            .<span class="ident">collect</span>()
+    }
+
+    <span class="doccomment">/// Returns the joined rooms this client knows about.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">joined_rooms</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">room</span>::<span class="ident">Joined</span><span class="op">&gt;</span> {
+        <span class="self">self</span>.<span class="ident">store</span>()
+            .<span class="ident">get_rooms</span>()
+            .<span class="ident">into_iter</span>()
+            .<span class="ident">filter_map</span>(<span class="op">|</span><span class="ident">room</span><span class="op">|</span> <span class="ident">room</span>::<span class="ident">Joined</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="ident">clone</span>(), <span class="ident">room</span>))
             .<span class="ident">collect</span>()
     }
 
     <span class="doccomment">/// Returns the invited rooms this client knows about.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">invited_rooms</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">InvitedRoom</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">invited_rooms</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">room</span>::<span class="ident">Invited</span><span class="op">&gt;</span> {
         <span class="self">self</span>.<span class="ident">store</span>()
             .<span class="ident">get_rooms</span>()
             .<span class="ident">into_iter</span>()
-            .<span class="ident">filter_map</span>(<span class="op">|</span><span class="ident">r</span><span class="op">|</span> <span class="ident">r</span>.<span class="ident">invited</span>())
+            .<span class="ident">filter_map</span>(<span class="op">|</span><span class="ident">room</span><span class="op">|</span> <span class="ident">room</span>::<span class="ident">Invited</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="ident">clone</span>(), <span class="ident">room</span>))
             .<span class="ident">collect</span>()
     }
 
     <span class="doccomment">/// Returns the left rooms this client knows about.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">left_rooms</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">LeftRoom</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">left_rooms</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">room</span>::<span class="ident">Left</span><span class="op">&gt;</span> {
         <span class="self">self</span>.<span class="ident">store</span>()
             .<span class="ident">get_rooms</span>()
             .<span class="ident">into_iter</span>()
-            .<span class="ident">filter_map</span>(<span class="op">|</span><span class="ident">r</span><span class="op">|</span> <span class="ident">r</span>.<span class="ident">left</span>())
+            .<span class="ident">filter_map</span>(<span class="op">|</span><span class="ident">room</span><span class="op">|</span> <span class="ident">room</span>::<span class="ident">Left</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="ident">clone</span>(), <span class="ident">room</span>))
             .<span class="ident">collect</span>()
+    }
+
+    <span class="doccomment">/// Get a room with the given room id.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Arguments</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// `room_id` - The unique id of the room that should be fetched.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_room</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">room_id</span>: <span class="kw-2">&amp;</span><span class="ident">RoomId</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">room</span>::<span class="ident">Common</span><span class="op">&gt;</span> {
+        <span class="self">self</span>.<span class="ident">store</span>()
+            .<span class="ident">get_room</span>(<span class="ident">room_id</span>)
+            .<span class="ident">map</span>(<span class="op">|</span><span class="ident">room</span><span class="op">|</span> <span class="ident">room</span>::<span class="ident">Common</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="ident">clone</span>(), <span class="ident">room</span>))
     }
 
     <span class="doccomment">/// Get a joined room with the given room id.</span>
@@ -3695,8 +3406,10 @@
     <span class="doccomment">/// # Arguments</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// `room_id` - The unique id of the room that should be fetched.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_joined_room</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">room_id</span>: <span class="kw-2">&amp;</span><span class="ident">RoomId</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">JoinedRoom</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">store</span>().<span class="ident">get_joined_room</span>(<span class="ident">room_id</span>)
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_joined_room</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">room_id</span>: <span class="kw-2">&amp;</span><span class="ident">RoomId</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">room</span>::<span class="ident">Joined</span><span class="op">&gt;</span> {
+        <span class="self">self</span>.<span class="ident">store</span>()
+            .<span class="ident">get_room</span>(<span class="ident">room_id</span>)
+            .<span class="ident">and_then</span>(<span class="op">|</span><span class="ident">room</span><span class="op">|</span> <span class="ident">room</span>::<span class="ident">Joined</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="ident">clone</span>(), <span class="ident">room</span>))
     }
 
     <span class="doccomment">/// Get an invited room with the given room id.</span>
@@ -3704,8 +3417,10 @@
     <span class="doccomment">/// # Arguments</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// `room_id` - The unique id of the room that should be fetched.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_invited_room</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">room_id</span>: <span class="kw-2">&amp;</span><span class="ident">RoomId</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">InvitedRoom</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">store</span>().<span class="ident">get_invited_room</span>(<span class="ident">room_id</span>)
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_invited_room</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">room_id</span>: <span class="kw-2">&amp;</span><span class="ident">RoomId</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">room</span>::<span class="ident">Invited</span><span class="op">&gt;</span> {
+        <span class="self">self</span>.<span class="ident">store</span>()
+            .<span class="ident">get_room</span>(<span class="ident">room_id</span>)
+            .<span class="ident">and_then</span>(<span class="op">|</span><span class="ident">room</span><span class="op">|</span> <span class="ident">room</span>::<span class="ident">Invited</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="ident">clone</span>(), <span class="ident">room</span>))
     }
 
     <span class="doccomment">/// Get a left room with the given room id.</span>
@@ -3713,8 +3428,10 @@
     <span class="doccomment">/// # Arguments</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// `room_id` - The unique id of the room that should be fetched.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_left_room</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">room_id</span>: <span class="kw-2">&amp;</span><span class="ident">RoomId</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">LeftRoom</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">store</span>().<span class="ident">get_left_room</span>(<span class="ident">room_id</span>)
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_left_room</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">room_id</span>: <span class="kw-2">&amp;</span><span class="ident">RoomId</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">room</span>::<span class="ident">Left</span><span class="op">&gt;</span> {
+        <span class="self">self</span>.<span class="ident">store</span>()
+            .<span class="ident">get_room</span>(<span class="ident">room_id</span>)
+            .<span class="ident">and_then</span>(<span class="op">|</span><span class="ident">room</span><span class="op">|</span> <span class="ident">room</span>::<span class="ident">Left</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="ident">clone</span>(), <span class="ident">room</span>))
     }
 
     <span class="doccomment">/// Login to the server.</span>
@@ -3900,111 +3617,6 @@
         <span class="self">self</span>.<span class="ident">send</span>(<span class="ident">request</span>, <span class="prelude-val">None</span>).<span class="kw">await</span>
     }
 
-    <span class="doccomment">/// Forget a room by `RoomId`.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Returns a `forget_room::Response`, an empty response.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # Arguments</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// * `room_id` - The `RoomId` of the room to be forget.</span>
-    <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">forget_room_by_id</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">room_id</span>: <span class="kw-2">&amp;</span><span class="ident">RoomId</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">forget_room</span>::<span class="ident">Response</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">request</span> <span class="op">=</span> <span class="ident">forget_room</span>::<span class="ident">Request</span>::<span class="ident">new</span>(<span class="ident">room_id</span>);
-        <span class="self">self</span>.<span class="ident">send</span>(<span class="ident">request</span>, <span class="prelude-val">None</span>).<span class="kw">await</span>
-    }
-
-    <span class="doccomment">/// Ban a user from a room by `RoomId` and `UserId`.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Returns a `ban_user::Response`, an empty response.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # Arguments</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// * `room_id` - The `RoomId` of the room to ban the user from.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// * `user_id` - The user to ban by `UserId`.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// * `reason` - The reason for banning this user.</span>
-    <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">ban_user</span>(
-        <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">room_id</span>: <span class="kw-2">&amp;</span><span class="ident">RoomId</span>,
-        <span class="ident">user_id</span>: <span class="kw-2">&amp;</span><span class="ident">UserId</span>,
-        <span class="ident">reason</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">ban_user</span>::<span class="ident">Response</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">request</span> <span class="op">=</span> <span class="macro">assign</span><span class="macro">!</span>(<span class="ident">ban_user</span>::<span class="ident">Request</span>::<span class="ident">new</span>(<span class="ident">room_id</span>, <span class="ident">user_id</span>), { <span class="ident">reason</span> });
-        <span class="self">self</span>.<span class="ident">send</span>(<span class="ident">request</span>, <span class="prelude-val">None</span>).<span class="kw">await</span>
-    }
-
-    <span class="doccomment">/// Kick a user out of the specified room.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Returns a `kick_user::Response`, an empty response.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # Arguments</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// * `room_id` - The `RoomId` of the room the user should be kicked out of.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// * `user_id` - The `UserId` of the user that should be kicked out of the room.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// * `reason` - Optional reason why the room member is being kicked out.</span>
-    <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">kick_user</span>(
-        <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">room_id</span>: <span class="kw-2">&amp;</span><span class="ident">RoomId</span>,
-        <span class="ident">user_id</span>: <span class="kw-2">&amp;</span><span class="ident">UserId</span>,
-        <span class="ident">reason</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">kick_user</span>::<span class="ident">Response</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">request</span> <span class="op">=</span> <span class="macro">assign</span><span class="macro">!</span>(<span class="ident">kick_user</span>::<span class="ident">Request</span>::<span class="ident">new</span>(<span class="ident">room_id</span>, <span class="ident">user_id</span>), { <span class="ident">reason</span> });
-        <span class="self">self</span>.<span class="ident">send</span>(<span class="ident">request</span>, <span class="prelude-val">None</span>).<span class="kw">await</span>
-    }
-
-    <span class="doccomment">/// Leave the specified room.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Returns a `leave_room::Response`, an empty response.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # Arguments</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// * `room_id` - The `RoomId` of the room to leave.</span>
-    <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">leave_room</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">room_id</span>: <span class="kw-2">&amp;</span><span class="ident">RoomId</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">leave_room</span>::<span class="ident">Response</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">request</span> <span class="op">=</span> <span class="ident">leave_room</span>::<span class="ident">Request</span>::<span class="ident">new</span>(<span class="ident">room_id</span>);
-        <span class="self">self</span>.<span class="ident">send</span>(<span class="ident">request</span>, <span class="prelude-val">None</span>).<span class="kw">await</span>
-    }
-
-    <span class="doccomment">/// Invite the specified user by `UserId` to the given room.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Returns a `invite_user::Response`, an empty response.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # Arguments</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// * `room_id` - The `RoomId` of the room to invite the specified user to.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// * `user_id` - The `UserId` of the user to invite to the room.</span>
-    <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">invite_user_by_id</span>(
-        <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">room_id</span>: <span class="kw-2">&amp;</span><span class="ident">RoomId</span>,
-        <span class="ident">user_id</span>: <span class="kw-2">&amp;</span><span class="ident">UserId</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">invite_user</span>::<span class="ident">Response</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">recipient</span> <span class="op">=</span> <span class="ident">InvitationRecipient</span>::<span class="ident">UserId</span> { <span class="ident">user_id</span> };
-
-        <span class="kw">let</span> <span class="ident">request</span> <span class="op">=</span> <span class="ident">invite_user</span>::<span class="ident">Request</span>::<span class="ident">new</span>(<span class="ident">room_id</span>, <span class="ident">recipient</span>);
-        <span class="self">self</span>.<span class="ident">send</span>(<span class="ident">request</span>, <span class="prelude-val">None</span>).<span class="kw">await</span>
-    }
-
-    <span class="doccomment">/// Invite the specified user by third party id to the given room.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Returns a `invite_user::Response`, an empty response.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # Arguments</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// * `room_id` - The `RoomId` of the room to invite the specified user to.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// * `invite_id` - A third party id of a user to invite to the room.</span>
-    <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">invite_user_by_3pid</span>(
-        <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">room_id</span>: <span class="kw-2">&amp;</span><span class="ident">RoomId</span>,
-        <span class="ident">invite_id</span>: <span class="ident">Invite3pid</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">invite_user</span>::<span class="ident">Response</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">recipient</span> <span class="op">=</span> <span class="ident">InvitationRecipient</span>::<span class="ident">ThirdPartyId</span>(<span class="ident">invite_id</span>);
-        <span class="kw">let</span> <span class="ident">request</span> <span class="op">=</span> <span class="ident">invite_user</span>::<span class="ident">Request</span>::<span class="ident">new</span>(<span class="ident">room_id</span>, <span class="ident">recipient</span>);
-        <span class="self">self</span>.<span class="ident">send</span>(<span class="ident">request</span>, <span class="prelude-val">None</span>).<span class="kw">await</span>
-    }
-
     <span class="doccomment">/// Search the homeserver&#39;s directory of public rooms.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Sends a request to &quot;_matrix/client/r0/publicRooms&quot;, returns</span>
@@ -4051,6 +3663,38 @@
         <span class="self">self</span>.<span class="ident">send</span>(<span class="ident">request</span>, <span class="prelude-val">None</span>).<span class="kw">await</span>
     }
 
+    <span class="doccomment">/// Create a room using the `RoomBuilder` and send the request.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// Sends a request to `/_matrix/client/r0/createRoom`, returns a `create_room::Response`,</span>
+    <span class="doccomment">/// this is an empty response.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Arguments</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// * `room` - The easiest way to create this request is using the</span>
+    <span class="doccomment">/// `create_room::Request` itself.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Examples</span>
+    <span class="doccomment">/// ```no_run</span>
+    <span class="doccomment">/// use matrix_sdk::Client;</span>
+    <span class="doccomment">/// # use matrix_sdk::api::r0::room::{create_room::Request as CreateRoomRequest, Visibility};</span>
+    <span class="doccomment">/// # use url::Url;</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # let homeserver = Url::parse(&quot;http://example.com&quot;).unwrap();</span>
+    <span class="doccomment">/// let request = CreateRoomRequest::new();</span>
+    <span class="doccomment">/// let client = Client::new(homeserver).unwrap();</span>
+    <span class="doccomment">/// # use futures::executor::block_on;</span>
+    <span class="doccomment">/// # block_on(async {</span>
+    <span class="doccomment">/// assert!(client.create_room(request).await.is_ok());</span>
+    <span class="doccomment">/// # });</span>
+    <span class="doccomment">/// ```</span>
+    <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">create_room</span>(
+        <span class="kw-2">&amp;</span><span class="self">self</span>,
+        <span class="ident">room</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">create_room</span>::<span class="ident">Request</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">create_room</span>::<span class="ident">Response</span><span class="op">&gt;</span> {
+        <span class="kw">let</span> <span class="ident">request</span> <span class="op">=</span> <span class="ident">room</span>.<span class="ident">into</span>();
+        <span class="self">self</span>.<span class="ident">send</span>(<span class="ident">request</span>, <span class="prelude-val">None</span>).<span class="kw">await</span>
+    }
+
     <span class="doccomment">/// Search the homeserver&#39;s directory of public rooms with a filter.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Sends a request to &quot;_matrix/client/r0/publicRooms&quot;, returns</span>
@@ -4089,207 +3733,6 @@
         <span class="self">self</span>.<span class="ident">send</span>(<span class="ident">request</span>, <span class="prelude-val">None</span>).<span class="kw">await</span>
     }
 
-    <span class="doccomment">/// Create a room using the `RoomBuilder` and send the request.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Sends a request to `/_matrix/client/r0/createRoom`, returns a `create_room::Response`,</span>
-    <span class="doccomment">/// this is an empty response.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # Arguments</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// * `room` - The easiest way to create this request is using the</span>
-    <span class="doccomment">/// `create_room::Request` itself.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # Examples</span>
-    <span class="doccomment">/// ```no_run</span>
-    <span class="doccomment">/// use matrix_sdk::Client;</span>
-    <span class="doccomment">/// # use matrix_sdk::api::r0::room::{create_room::Request as CreateRoomRequest, Visibility};</span>
-    <span class="doccomment">/// # use url::Url;</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # let homeserver = Url::parse(&quot;http://example.com&quot;).unwrap();</span>
-    <span class="doccomment">/// let request = CreateRoomRequest::new();</span>
-    <span class="doccomment">/// let client = Client::new(homeserver).unwrap();</span>
-    <span class="doccomment">/// # use futures::executor::block_on;</span>
-    <span class="doccomment">/// # block_on(async {</span>
-    <span class="doccomment">/// assert!(client.create_room(request).await.is_ok());</span>
-    <span class="doccomment">/// # });</span>
-    <span class="doccomment">/// ```</span>
-    <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">create_room</span>(
-        <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">room</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">create_room</span>::<span class="ident">Request</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">create_room</span>::<span class="ident">Response</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">request</span> <span class="op">=</span> <span class="ident">room</span>.<span class="ident">into</span>();
-        <span class="self">self</span>.<span class="ident">send</span>(<span class="ident">request</span>, <span class="prelude-val">None</span>).<span class="kw">await</span>
-    }
-
-    <span class="doccomment">/// Sends a request to `/_matrix/client/r0/rooms/{room_id}/messages` and returns</span>
-    <span class="doccomment">/// a `get_message_events::Response` that contains a chunk of room and state events</span>
-    <span class="doccomment">/// (`AnyRoomEvent` and `AnyStateEvent`).</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # Arguments</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// * `request` - The easiest way to create this request is using the</span>
-    <span class="doccomment">/// `get_message_events::Request` itself.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # Examples</span>
-    <span class="doccomment">/// ```no_run</span>
-    <span class="doccomment">/// # use std::convert::TryFrom;</span>
-    <span class="doccomment">/// use matrix_sdk::Client;</span>
-    <span class="doccomment">/// # use matrix_sdk::identifiers::room_id;</span>
-    <span class="doccomment">/// # use matrix_sdk::api::r0::filter::RoomEventFilter;</span>
-    <span class="doccomment">/// # use matrix_sdk::api::r0::message::get_message_events::Request as MessagesRequest;</span>
-    <span class="doccomment">/// # use url::Url;</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # let homeserver = Url::parse(&quot;http://example.com&quot;).unwrap();</span>
-    <span class="doccomment">/// let room_id = room_id!(&quot;!roomid:example.com&quot;);</span>
-    <span class="doccomment">/// let request = MessagesRequest::backward(&amp;room_id, &quot;t47429-4392820_219380_26003_2265&quot;);</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// let mut client = Client::new(homeserver).unwrap();</span>
-    <span class="doccomment">/// # use futures::executor::block_on;</span>
-    <span class="doccomment">/// # block_on(async {</span>
-    <span class="doccomment">/// assert!(client.room_messages(request).await.is_ok());</span>
-    <span class="doccomment">/// # });</span>
-    <span class="doccomment">/// ```</span>
-    <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">room_messages</span>(
-        <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">request</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">get_message_events</span>::<span class="ident">Request</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">get_message_events</span>::<span class="ident">Response</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">request</span> <span class="op">=</span> <span class="ident">request</span>.<span class="ident">into</span>();
-        <span class="self">self</span>.<span class="ident">send</span>(<span class="ident">request</span>, <span class="prelude-val">None</span>).<span class="kw">await</span>
-    }
-
-    <span class="doccomment">/// Send a request to notify the room of a user typing.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Returns a `create_typing_event::Response`, an empty response.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # Arguments</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// * `room_id` - The `RoomId` the user is typing in.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// * `typing` - Whether the user is typing, and how long.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # Examples</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// ```no_run</span>
-    <span class="doccomment">/// # use std::time::Duration;</span>
-    <span class="doccomment">/// # use matrix_sdk::{</span>
-    <span class="doccomment">/// #     Client, SyncSettings,</span>
-    <span class="doccomment">/// #     api::r0::typing::create_typing_event::Typing,</span>
-    <span class="doccomment">/// #     identifiers::room_id,</span>
-    <span class="doccomment">/// # };</span>
-    <span class="doccomment">/// # use futures::executor::block_on;</span>
-    <span class="doccomment">/// # use url::Url;</span>
-    <span class="doccomment">/// # block_on(async {</span>
-    <span class="doccomment">/// # let homeserver = Url::parse(&quot;http://localhost:8080&quot;).unwrap();</span>
-    <span class="doccomment">/// # let mut client = Client::new(homeserver).unwrap();</span>
-    <span class="doccomment">/// # let room_id = room_id!(&quot;!test:localhost&quot;);</span>
-    <span class="doccomment">/// let response = client</span>
-    <span class="doccomment">///     .typing_notice(&amp;room_id, Typing::Yes(Duration::from_secs(4)))</span>
-    <span class="doccomment">///     .await</span>
-    <span class="doccomment">///     .expect(&quot;Can&#39;t get devices from server&quot;);</span>
-    <span class="doccomment">/// # });</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// ```</span>
-    <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">typing_notice</span>(
-        <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">room_id</span>: <span class="kw-2">&amp;</span><span class="ident">RoomId</span>,
-        <span class="ident">typing</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Typing</span><span class="op">&gt;</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">TypingResponse</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">user_id</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">user_id</span>().<span class="kw">await</span>.<span class="ident">ok_or</span>(<span class="ident">Error</span>::<span class="ident">AuthenticationRequired</span>)<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">request</span> <span class="op">=</span> <span class="ident">TypingRequest</span>::<span class="ident">new</span>(<span class="kw-2">&amp;</span><span class="ident">user_id</span>, <span class="ident">room_id</span>, <span class="ident">typing</span>.<span class="ident">into</span>());
-
-        <span class="self">self</span>.<span class="ident">send</span>(<span class="ident">request</span>, <span class="prelude-val">None</span>).<span class="kw">await</span>
-    }
-
-    <span class="doccomment">/// Send a request to notify the room the user has read specific event.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Returns a `create_receipt::Response`, an empty response.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # Arguments</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// * `room_id` - The `RoomId` the user is currently in.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// * `event_id` - The `EventId` specifies the event to set the read receipt on.</span>
-    <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">read_receipt</span>(
-        <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">room_id</span>: <span class="kw-2">&amp;</span><span class="ident">RoomId</span>,
-        <span class="ident">event_id</span>: <span class="kw-2">&amp;</span><span class="ident">EventId</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">create_receipt</span>::<span class="ident">Response</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">request</span> <span class="op">=</span>
-            <span class="ident">create_receipt</span>::<span class="ident">Request</span>::<span class="ident">new</span>(<span class="ident">room_id</span>, <span class="ident">create_receipt</span>::<span class="ident">ReceiptType</span>::<span class="ident">Read</span>, <span class="ident">event_id</span>);
-        <span class="self">self</span>.<span class="ident">send</span>(<span class="ident">request</span>, <span class="prelude-val">None</span>).<span class="kw">await</span>
-    }
-
-    <span class="doccomment">/// Send a request to notify the room user has read up to specific event.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Returns a `set_read_marker::Response`, an empty response.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # Arguments</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// * room_id - The `RoomId` the user is currently in.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// * fully_read - The `EventId` of the event the user has read to.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// * read_receipt - An `EventId` to specify the event to set the read receipt on.</span>
-    <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">read_marker</span>(
-        <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">room_id</span>: <span class="kw-2">&amp;</span><span class="ident">RoomId</span>,
-        <span class="ident">fully_read</span>: <span class="kw-2">&amp;</span><span class="ident">EventId</span>,
-        <span class="ident">read_receipt</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">EventId</span><span class="op">&gt;</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">set_read_marker</span>::<span class="ident">Response</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">request</span> <span class="op">=</span> <span class="macro">assign</span><span class="macro">!</span>(<span class="ident">set_read_marker</span>::<span class="ident">Request</span>::<span class="ident">new</span>(<span class="ident">room_id</span>, <span class="ident">fully_read</span>), {
-            <span class="ident">read_receipt</span>
-        });
-        <span class="self">self</span>.<span class="ident">send</span>(<span class="ident">request</span>, <span class="prelude-val">None</span>).<span class="kw">await</span>
-    }
-
-    <span class="doccomment">/// Share a group session for the given room.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// This will create Olm sessions with all the users/device pairs in the</span>
-    <span class="doccomment">/// room if necessary and share a group session with them.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Does nothing if no group session needs to be shared.</span>
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;encryption&quot;</span>)]</span>
-    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;docs&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">encryption</span>)))]</span>
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">preshare_group_session</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">room_id</span>: <span class="kw-2">&amp;</span><span class="ident">RoomId</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
-        <span class="comment">// TODO expose this publicly so people can pre-share a group session if</span>
-        <span class="comment">// e.g. a user starts to type a message for a room.</span>
-        <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy</span>::<span class="ident">map_clone</span>)]</span>
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">mutex</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">group_session_locks</span>.<span class="ident">get</span>(<span class="ident">room_id</span>).<span class="ident">map</span>(<span class="op">|</span><span class="ident">m</span><span class="op">|</span> <span class="ident">m</span>.<span class="ident">clone</span>()) {
-            <span class="comment">// If a group session share request is already going on,</span>
-            <span class="comment">// await the release of the lock.</span>
-            <span class="ident">mutex</span>.<span class="ident">lock</span>().<span class="kw">await</span>;
-        } <span class="kw">else</span> {
-            <span class="comment">// Otherwise create a new lock and share the group</span>
-            <span class="comment">// session.</span>
-            <span class="kw">let</span> <span class="ident">mutex</span> <span class="op">=</span> <span class="ident">Arc</span>::<span class="ident">new</span>(<span class="ident">Mutex</span>::<span class="ident">new</span>(()));
-            <span class="self">self</span>.<span class="ident">group_session_locks</span>
-                .<span class="ident">insert</span>(<span class="ident">room_id</span>.<span class="ident">clone</span>(), <span class="ident">mutex</span>.<span class="ident">clone</span>());
-
-            <span class="kw">let</span> <span class="ident">_guard</span> <span class="op">=</span> <span class="ident">mutex</span>.<span class="ident">lock</span>().<span class="kw">await</span>;
-
-            {
-                <span class="kw">let</span> <span class="ident">joined</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">store</span>().<span class="ident">get_joined_user_ids</span>(<span class="ident">room_id</span>).<span class="kw">await</span><span class="question-mark">?</span>;
-                <span class="kw">let</span> <span class="ident">invited</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">store</span>().<span class="ident">get_invited_user_ids</span>(<span class="ident">room_id</span>).<span class="kw">await</span><span class="question-mark">?</span>;
-                <span class="kw">let</span> <span class="ident">members</span> <span class="op">=</span> <span class="ident">joined</span>.<span class="ident">iter</span>().<span class="ident">chain</span>(<span class="kw-2">&amp;</span><span class="ident">invited</span>);
-                <span class="self">self</span>.<span class="ident">claim_one_time_keys</span>(<span class="ident">members</span>).<span class="kw">await</span><span class="question-mark">?</span>;
-            };
-
-            <span class="kw">let</span> <span class="ident">response</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">share_group_session</span>(<span class="ident">room_id</span>).<span class="kw">await</span>;
-
-            <span class="self">self</span>.<span class="ident">group_session_locks</span>.<span class="ident">remove</span>(<span class="ident">room_id</span>);
-
-            <span class="comment">// If one of the responses failed invalidate the group</span>
-            <span class="comment">// session as using it would end up in undecryptable</span>
-            <span class="comment">// messages.</span>
-            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Err</span>(<span class="ident">r</span>) <span class="op">=</span> <span class="ident">response</span> {
-                <span class="self">self</span>.<span class="ident">base_client</span>.<span class="ident">invalidate_group_session</span>(<span class="ident">room_id</span>).<span class="kw">await</span>;
-                <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">r</span>);
-            }
-        }
-
-        <span class="prelude-val">Ok</span>(())
-    }
-
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;encryption&quot;</span>)]</span>
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">room_send_helper</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
@@ -4299,222 +3742,10 @@
         <span class="kw">let</span> <span class="ident">txn_id</span> <span class="op">=</span> <span class="ident">request</span>.<span class="ident">txn_id</span>;
         <span class="kw">let</span> <span class="ident">room_id</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">request</span>.<span class="ident">room_id</span>;
 
-        <span class="self">self</span>.<span class="ident">room_send</span>(<span class="kw-2">&amp;</span><span class="ident">room_id</span>, <span class="ident">content</span>, <span class="prelude-val">Some</span>(<span class="ident">txn_id</span>)).<span class="kw">await</span>
-    }
-
-    <span class="doccomment">/// Send a room message to the homeserver.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Returns the parsed response from the server.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// If the encryption feature is enabled this method will transparently</span>
-    <span class="doccomment">/// encrypt the room message if the given room is encrypted.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # Arguments</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// * `room_id` -  The id of the room that should receive the message.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// * `content` - The content of the message event.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// * `txn_id` - A unique `Uuid` that can be attached to a `MessageEvent`</span>
-    <span class="doccomment">/// held in its unsigned field as `transaction_id`. If not given one is</span>
-    <span class="doccomment">/// created for the message.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # Example</span>
-    <span class="doccomment">/// ```no_run</span>
-    <span class="doccomment">/// # use std::sync::{Arc, RwLock};</span>
-    <span class="doccomment">/// # use matrix_sdk::{Client, SyncSettings};</span>
-    <span class="doccomment">/// # use url::Url;</span>
-    <span class="doccomment">/// # use futures::executor::block_on;</span>
-    <span class="doccomment">/// # use matrix_sdk::identifiers::room_id;</span>
-    <span class="doccomment">/// # use std::convert::TryFrom;</span>
-    <span class="doccomment">/// use matrix_sdk::events::{</span>
-    <span class="doccomment">///     AnyMessageEventContent,</span>
-    <span class="doccomment">///     room::message::{MessageEventContent, TextMessageEventContent},</span>
-    <span class="doccomment">/// };</span>
-    <span class="doccomment">/// # block_on(async {</span>
-    <span class="doccomment">/// # let homeserver = Url::parse(&quot;http://localhost:8080&quot;).unwrap();</span>
-    <span class="doccomment">/// # let mut client = Client::new(homeserver).unwrap();</span>
-    <span class="doccomment">/// # let room_id = room_id!(&quot;!test:localhost&quot;);</span>
-    <span class="doccomment">/// use matrix_sdk_common::uuid::Uuid;</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// let content = AnyMessageEventContent::RoomMessage(</span>
-    <span class="doccomment">///     MessageEventContent::Text(TextMessageEventContent::plain(&quot;Hello world&quot;))</span>
-    <span class="doccomment">/// );</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// let txn_id = Uuid::new_v4();</span>
-    <span class="doccomment">/// client.room_send(&amp;room_id, content, Some(txn_id)).await.unwrap();</span>
-    <span class="doccomment">/// # })</span>
-    <span class="doccomment">/// ```</span>
-    <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">room_send</span>(
-        <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">room_id</span>: <span class="kw-2">&amp;</span><span class="ident">RoomId</span>,
-        <span class="ident">content</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">AnyMessageEventContent</span><span class="op">&gt;</span>,
-        <span class="ident">txn_id</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Uuid</span><span class="op">&gt;</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">send_message_event</span>::<span class="ident">Response</span><span class="op">&gt;</span> {
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;encryption&quot;</span>))]</span>
-        <span class="kw">let</span> <span class="ident">content</span>: <span class="ident">AnyMessageEventContent</span> <span class="op">=</span> <span class="ident">content</span>.<span class="ident">into</span>();
-
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;encryption&quot;</span>)]</span>
-        <span class="kw">let</span> <span class="ident">content</span> <span class="op">=</span> <span class="kw">if</span> <span class="self">self</span>.<span class="ident">is_room_encrypted</span>(<span class="ident">room_id</span>).<span class="kw">await</span> {
-            <span class="kw">if</span> <span class="op">!</span><span class="self">self</span>.<span class="ident">are_members_synced</span>(<span class="ident">room_id</span>).<span class="kw">await</span> {
-                <span class="self">self</span>.<span class="ident">room_members</span>(<span class="ident">room_id</span>).<span class="kw">await</span><span class="question-mark">?</span>;
-                <span class="comment">// TODO query keys here?</span>
-            }
-
-            <span class="self">self</span>.<span class="ident">preshare_group_session</span>(<span class="ident">room_id</span>).<span class="kw">await</span><span class="question-mark">?</span>;
-            <span class="ident">AnyMessageEventContent</span>::<span class="ident">RoomEncrypted</span>(<span class="self">self</span>.<span class="ident">base_client</span>.<span class="ident">encrypt</span>(<span class="ident">room_id</span>, <span class="ident">content</span>).<span class="kw">await</span><span class="question-mark">?</span>)
-        } <span class="kw">else</span> {
-            <span class="ident">content</span>.<span class="ident">into</span>()
-        };
-
-        <span class="kw">let</span> <span class="ident">txn_id</span> <span class="op">=</span> <span class="ident">txn_id</span>.<span class="ident">unwrap_or_else</span>(<span class="ident">Uuid</span>::<span class="ident">new_v4</span>).<span class="ident">to_string</span>();
-        <span class="kw">let</span> <span class="ident">request</span> <span class="op">=</span> <span class="ident">send_message_event</span>::<span class="ident">Request</span>::<span class="ident">new</span>(<span class="kw-2">&amp;</span><span class="ident">room_id</span>, <span class="kw-2">&amp;</span><span class="ident">txn_id</span>, <span class="kw-2">&amp;</span><span class="ident">content</span>);
-
-        <span class="kw">let</span> <span class="ident">response</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">send</span>(<span class="ident">request</span>, <span class="prelude-val">None</span>).<span class="kw">await</span><span class="question-mark">?</span>;
-        <span class="prelude-val">Ok</span>(<span class="ident">response</span>)
-    }
-
-    <span class="doccomment">/// Check if the given room is encrypted.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Returns true if a room with the given id was found and the room is</span>
-    <span class="doccomment">/// encrypted, false if the room wasn&#39;t found or isn&#39;t encrypted.</span>
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">is_room_encrypted</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">room_id</span>: <span class="kw-2">&amp;</span><span class="ident">RoomId</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">base_client</span>
-            .<span class="ident">get_room</span>(<span class="ident">room_id</span>)
-            .<span class="ident">map</span>(<span class="op">|</span><span class="ident">r</span><span class="op">|</span> <span class="ident">r</span>.<span class="ident">is_encrypted</span>())
-            .<span class="ident">unwrap_or</span>(<span class="bool-val">false</span>)
-    }
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;encryption&quot;</span>)]</span>
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">are_members_synced</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">room_id</span>: <span class="kw-2">&amp;</span><span class="ident">RoomId</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">base_client</span>
-            .<span class="ident">get_room</span>(<span class="ident">room_id</span>)
-            .<span class="ident">map</span>(<span class="op">|</span><span class="ident">r</span><span class="op">|</span> <span class="ident">r</span>.<span class="ident">are_members_synced</span>())
-            .<span class="ident">unwrap_or</span>(<span class="bool-val">true</span>)
-    }
-
-    <span class="doccomment">/// Send an attachment to a room.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// This will upload the given data that the reader produces using the</span>
-    <span class="doccomment">/// [`upload()`](#method.upload) method and post an event to the given room.</span>
-    <span class="doccomment">/// If the room is encrypted and the encryption feature is enabled the</span>
-    <span class="doccomment">/// upload will be encrypted.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// This is a convenience method that calls the [`upload()`](#method.upload)</span>
-    <span class="doccomment">/// and afterwards the [`room_send()`](#method.room_send).</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # Arguments</span>
-    <span class="doccomment">/// * `room_id` -  The id of the room that should receive the media event.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// * `body` - A textual representation of the media that is going to be</span>
-    <span class="doccomment">/// uploaded. Usually the file name.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// * `content_type` - The type of the media, this will be used as the</span>
-    <span class="doccomment">/// content-type header.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// * `reader` - A `Reader` that will be used to fetch the raw bytes of the</span>
-    <span class="doccomment">/// media.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// * `txn_id` - A unique `Uuid` that can be attached to a `MessageEvent`</span>
-    <span class="doccomment">/// held in its unsigned field as `transaction_id`. If not given one is</span>
-    <span class="doccomment">/// created for the message.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # Examples</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// ```no_run</span>
-    <span class="doccomment">/// # use std::{path::PathBuf, fs::File, io::Read};</span>
-    <span class="doccomment">/// # use matrix_sdk::{Client, identifiers::room_id};</span>
-    <span class="doccomment">/// # use url::Url;</span>
-    <span class="doccomment">/// # use mime;</span>
-    <span class="doccomment">/// # use futures::executor::block_on;</span>
-    <span class="doccomment">/// # block_on(async {</span>
-    <span class="doccomment">/// # let homeserver = Url::parse(&quot;http://localhost:8080&quot;).unwrap();</span>
-    <span class="doccomment">/// # let mut client = Client::new(homeserver).unwrap();</span>
-    <span class="doccomment">/// # let room_id = room_id!(&quot;!test:localhost&quot;);</span>
-    <span class="doccomment">/// let path = PathBuf::from(&quot;/home/example/my-cat.jpg&quot;);</span>
-    <span class="doccomment">/// let mut image = File::open(path).unwrap();</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// let response = client</span>
-    <span class="doccomment">///     .room_send_attachment(&amp;room_id, &quot;My favorite cat&quot;, &amp;mime::IMAGE_JPEG, &amp;mut image, None)</span>
-    <span class="doccomment">///     .await</span>
-    <span class="doccomment">///     .expect(&quot;Can&#39;t upload my cat.&quot;);</span>
-    <span class="doccomment">/// # });</span>
-    <span class="doccomment">/// ```</span>
-    <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">room_send_attachment</span><span class="op">&lt;</span><span class="ident">R</span>: <span class="ident">Read</span><span class="op">&gt;</span>(
-        <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">room_id</span>: <span class="kw-2">&amp;</span><span class="ident">RoomId</span>,
-        <span class="ident">body</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
-        <span class="ident">content_type</span>: <span class="kw-2">&amp;</span><span class="ident">Mime</span>,
-        <span class="kw-2">mut</span> <span class="ident">reader</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">R</span>,
-        <span class="ident">txn_id</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Uuid</span><span class="op">&gt;</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">send_message_event</span>::<span class="ident">Response</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> (<span class="ident">response</span>, <span class="ident">encrypted_file</span>) <span class="op">=</span> <span class="kw">if</span> <span class="self">self</span>.<span class="ident">is_room_encrypted</span>(<span class="ident">room_id</span>).<span class="kw">await</span> {
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;encryption&quot;</span>)]</span>
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">reader</span> <span class="op">=</span> <span class="ident">AttachmentEncryptor</span>::<span class="ident">new</span>(<span class="ident">reader</span>);
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;encryption&quot;</span>)]</span>
-            <span class="kw">let</span> <span class="ident">content_type</span> <span class="op">=</span> <span class="ident">mime</span>::<span class="ident">APPLICATION_OCTET_STREAM</span>;
-
-            <span class="kw">let</span> <span class="ident">response</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">upload</span>(<span class="kw-2">&amp;</span><span class="ident">content_type</span>, <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">reader</span>).<span class="kw">await</span><span class="question-mark">?</span>;
-
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;encryption&quot;</span>)]</span>
-            <span class="kw">let</span> <span class="ident">keys</span> <span class="op">=</span> {
-                <span class="kw">let</span> <span class="ident">keys</span> <span class="op">=</span> <span class="ident">reader</span>.<span class="ident">finish</span>();
-                <span class="prelude-val">Some</span>(<span class="ident">Box</span>::<span class="ident">new</span>(<span class="ident">EncryptedFile</span> {
-                    <span class="ident">url</span>: <span class="ident">response</span>.<span class="ident">content_uri</span>.<span class="ident">clone</span>(),
-                    <span class="ident">key</span>: <span class="ident">keys</span>.<span class="ident">web_key</span>,
-                    <span class="ident">iv</span>: <span class="ident">keys</span>.<span class="ident">iv</span>,
-                    <span class="ident">hashes</span>: <span class="ident">keys</span>.<span class="ident">hashes</span>,
-                    <span class="ident">v</span>: <span class="ident">keys</span>.<span class="ident">version</span>,
-                }))
-            };
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;encryption&quot;</span>))]</span>
-            <span class="kw">let</span> <span class="ident">keys</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Box</span><span class="op">&lt;</span><span class="ident">EncryptedFile</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="op">=</span> <span class="prelude-val">None</span>;
-
-            (<span class="ident">response</span>, <span class="ident">keys</span>)
-        } <span class="kw">else</span> {
-            <span class="kw">let</span> <span class="ident">response</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">upload</span>(<span class="kw-2">&amp;</span><span class="ident">content_type</span>, <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">reader</span>).<span class="kw">await</span><span class="question-mark">?</span>;
-            (<span class="ident">response</span>, <span class="prelude-val">None</span>)
-        };
-
-        <span class="kw">let</span> <span class="ident">url</span> <span class="op">=</span> <span class="ident">response</span>.<span class="ident">content_uri</span>;
-
-        <span class="kw">let</span> <span class="ident">content</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">content_type</span>.<span class="ident">type_</span>() {
-            <span class="ident">mime</span>::<span class="ident">IMAGE</span> <span class="op">=</span><span class="op">&gt;</span> {
-                <span class="comment">// TODO create a thumbnail using the image crate?.</span>
-                <span class="ident">MessageEventContent</span>::<span class="ident">Image</span>(<span class="ident">ImageMessageEventContent</span> {
-                    <span class="ident">body</span>: <span class="ident">body</span>.<span class="ident">to_owned</span>(),
-                    <span class="ident">info</span>: <span class="prelude-val">None</span>,
-                    <span class="ident">url</span>: <span class="prelude-val">Some</span>(<span class="ident">url</span>),
-                    <span class="ident">file</span>: <span class="ident">encrypted_file</span>,
-                })
-            }
-            <span class="ident">mime</span>::<span class="ident">AUDIO</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">MessageEventContent</span>::<span class="ident">Audio</span>(<span class="ident">AudioMessageEventContent</span> {
-                <span class="ident">body</span>: <span class="ident">body</span>.<span class="ident">to_owned</span>(),
-                <span class="ident">info</span>: <span class="prelude-val">None</span>,
-                <span class="ident">url</span>: <span class="prelude-val">Some</span>(<span class="ident">url</span>),
-                <span class="ident">file</span>: <span class="ident">encrypted_file</span>,
-            }),
-            <span class="ident">mime</span>::<span class="ident">VIDEO</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">MessageEventContent</span>::<span class="ident">Video</span>(<span class="ident">VideoMessageEventContent</span> {
-                <span class="ident">body</span>: <span class="ident">body</span>.<span class="ident">to_owned</span>(),
-                <span class="ident">info</span>: <span class="prelude-val">None</span>,
-                <span class="ident">url</span>: <span class="prelude-val">Some</span>(<span class="ident">url</span>),
-                <span class="ident">file</span>: <span class="ident">encrypted_file</span>,
-            }),
-            <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">MessageEventContent</span>::<span class="ident">File</span>(<span class="ident">FileMessageEventContent</span> {
-                <span class="ident">filename</span>: <span class="prelude-val">None</span>,
-                <span class="ident">body</span>: <span class="ident">body</span>.<span class="ident">to_owned</span>(),
-                <span class="ident">info</span>: <span class="prelude-val">None</span>,
-                <span class="ident">url</span>: <span class="prelude-val">Some</span>(<span class="ident">url</span>),
-                <span class="ident">file</span>: <span class="ident">encrypted_file</span>,
-            }),
-        };
-
-        <span class="self">self</span>.<span class="ident">room_send</span>(
-            <span class="ident">room_id</span>,
-            <span class="ident">AnyMessageEventContent</span>::<span class="ident">RoomMessage</span>(<span class="ident">content</span>),
-            <span class="ident">txn_id</span>,
-        )
-        .<span class="kw">await</span>
+        <span class="self">self</span>.<span class="ident">get_joined_room</span>(<span class="ident">room_id</span>)
+            .<span class="ident">expect</span>(<span class="string">&quot;Can&#39;t send a message to a room that isn&#39;t known to the store&quot;</span>)
+            .<span class="ident">send</span>(<span class="ident">content</span>, <span class="prelude-val">Some</span>(<span class="ident">txn_id</span>))
+            .<span class="kw">await</span>
     }
 
     <span class="doccomment">/// Upload some media to the server.</span>
@@ -4728,14 +3959,6 @@
         <span class="ident">request</span>.<span class="ident">auth</span> <span class="op">=</span> <span class="ident">auth_data</span>;
 
         <span class="self">self</span>.<span class="ident">send</span>(<span class="ident">request</span>, <span class="prelude-val">None</span>).<span class="kw">await</span>
-    }
-
-    <span class="doccomment">/// Get the room members for the given room.</span>
-    <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">room_members</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">room_id</span>: <span class="kw-2">&amp;</span><span class="ident">RoomId</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">MembersResponse</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">request</span> <span class="op">=</span> <span class="ident">get_member_events</span>::<span class="ident">Request</span>::<span class="ident">new</span>(<span class="ident">room_id</span>);
-        <span class="kw">let</span> <span class="ident">response</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">send</span>(<span class="ident">request</span>, <span class="prelude-val">None</span>).<span class="kw">await</span><span class="question-mark">?</span>;
-
-        <span class="prelude-val">Ok</span>(<span class="self">self</span>.<span class="ident">base_client</span>.<span class="ident">receive_members</span>(<span class="ident">room_id</span>, <span class="kw-2">&amp;</span><span class="ident">response</span>).<span class="kw">await</span><span class="question-mark">?</span>)
     }
 
     <span class="doccomment">/// Synchronize the client&#39;s state with the latest state on the server.</span>
@@ -4958,40 +4181,16 @@
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;encryption&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;docs&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">encryption</span>)))]</span>
     <span class="attribute">#[<span class="ident">instrument</span>(<span class="ident">skip</span>(<span class="ident">users</span>))]</span>
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">claim_one_time_keys</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">users</span>: <span class="kw">impl</span> <span class="ident">Iterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">UserId</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">claim_one_time_keys</span>(
+        <span class="kw-2">&amp;</span><span class="self">self</span>,
+        <span class="ident">users</span>: <span class="kw">impl</span> <span class="ident">Iterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">UserId</span><span class="op">&gt;</span>,
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">_lock</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">key_claim_lock</span>.<span class="ident">lock</span>().<span class="kw">await</span>;
 
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>((<span class="ident">request_id</span>, <span class="ident">request</span>)) <span class="op">=</span> <span class="self">self</span>.<span class="ident">base_client</span>.<span class="ident">get_missing_sessions</span>(<span class="ident">users</span>).<span class="kw">await</span><span class="question-mark">?</span> {
             <span class="kw">let</span> <span class="ident">response</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">send</span>(<span class="ident">request</span>, <span class="prelude-val">None</span>).<span class="kw">await</span><span class="question-mark">?</span>;
             <span class="self">self</span>.<span class="ident">base_client</span>
                 .<span class="ident">mark_request_as_sent</span>(<span class="kw-2">&amp;</span><span class="ident">request_id</span>, <span class="kw-2">&amp;</span><span class="ident">response</span>)
-                .<span class="kw">await</span><span class="question-mark">?</span>;
-        }
-
-        <span class="prelude-val">Ok</span>(())
-    }
-
-    <span class="doccomment">/// Share a group session for a room.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # Arguments</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// * `room_id` - The ID of the room for which we want to share a group</span>
-    <span class="doccomment">/// session.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # Panics</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Panics if the client isn&#39;t logged in.</span>
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;encryption&quot;</span>)]</span>
-    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;docs&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">encryption</span>)))]</span>
-    <span class="attribute">#[<span class="ident">instrument</span>]</span>
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">share_group_session</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">room_id</span>: <span class="kw-2">&amp;</span><span class="ident">RoomId</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">requests</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">base_client</span>.<span class="ident">share_group_session</span>(<span class="ident">room_id</span>).<span class="kw">await</span><span class="question-mark">?</span>;
-
-        <span class="kw">for</span> <span class="ident">request</span> <span class="kw">in</span> <span class="ident">requests</span>.<span class="ident">drain</span>(..) {
-            <span class="kw">let</span> <span class="ident">response</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">send_to_device</span>(<span class="kw-2">&amp;</span><span class="ident">request</span>).<span class="kw">await</span><span class="question-mark">?</span>;
-
-            <span class="self">self</span>.<span class="ident">base_client</span>
-                .<span class="ident">mark_request_as_sent</span>(<span class="kw-2">&amp;</span><span class="ident">request</span>.<span class="ident">txn_id</span>, <span class="kw-2">&amp;</span><span class="ident">response</span>)
                 .<span class="kw">await</span><span class="question-mark">?</span>;
         }
 
@@ -5077,11 +4276,13 @@
     <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">get_verification_request</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">flow_id</span>: <span class="kw-2">&amp;</span><span class="ident">EventId</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">VerificationRequest</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">olm</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">base_client</span>.<span class="ident">olm_machine</span>().<span class="kw">await</span><span class="question-mark">?</span>;
 
-        <span class="ident">olm</span>.<span class="ident">get_verification_request</span>(<span class="ident">flow_id</span>)
-            .<span class="ident">map</span>(<span class="op">|</span><span class="ident">r</span><span class="op">|</span> <span class="ident">VerificationRequest</span> {
-                <span class="ident">inner</span>: <span class="ident">r</span>,
-                <span class="ident">client</span>: <span class="self">self</span>.<span class="ident">clone</span>(),
-            })
+        <span class="ident">olm</span>.<span class="ident">get_verification_request</span>(<span class="ident">flow_id</span>).<span class="ident">and_then</span>(<span class="op">|</span><span class="ident">r</span><span class="op">|</span> {
+            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">room</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">get_joined_room</span>(<span class="ident">r</span>.<span class="ident">room_id</span>()) {
+                <span class="prelude-val">Some</span>(<span class="ident">VerificationRequest</span> { <span class="ident">inner</span>: <span class="ident">r</span>, <span class="ident">room</span> })
+            } <span class="kw">else</span> {
+                <span class="prelude-val">None</span>
+            }
+        })
     }
 
     <span class="doccomment">/// Get a specific device of a user.</span>
@@ -5403,15 +4604,15 @@
     <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">ClientConfig</span>, <span class="ident">HttpError</span>};
 
     <span class="kw">use</span> <span class="kw">super</span>::{
-        <span class="ident">get_public_rooms</span>, <span class="ident">get_public_rooms_filtered</span>, <span class="ident">register</span>::<span class="ident">RegistrationKind</span>, <span class="ident">Client</span>,
-        <span class="ident">Invite3pid</span>, <span class="ident">Session</span>, <span class="ident">SyncSettings</span>, <span class="ident">Url</span>,
+        <span class="ident">get_public_rooms</span>, <span class="ident">get_public_rooms_filtered</span>, <span class="ident">register</span>::<span class="ident">RegistrationKind</span>, <span class="ident">Client</span>, <span class="ident">Session</span>,
+        <span class="ident">SyncSettings</span>, <span class="ident">Url</span>,
     };
     <span class="kw">use</span> <span class="ident">matrix_sdk_base</span>::<span class="ident">RoomMember</span>;
     <span class="kw">use</span> <span class="ident">matrix_sdk_common</span>::{
         <span class="ident">api</span>::<span class="ident">r0</span>::{
             <span class="ident">account</span>::<span class="ident">register</span>::<span class="ident">Request</span> <span class="kw">as</span> <span class="ident">RegistrationRequest</span>,
             <span class="ident">directory</span>::<span class="ident">get_public_rooms_filtered</span>::<span class="ident">Request</span> <span class="kw">as</span> <span class="ident">PublicRoomsFilterRequest</span>,
-            <span class="ident">typing</span>::<span class="ident">create_typing_event</span>::<span class="ident">Typing</span>, <span class="ident">uiaa</span>::<span class="ident">AuthData</span>,
+            <span class="ident">membership</span>::<span class="ident">Invite3pid</span>, <span class="ident">typing</span>::<span class="ident">create_typing_event</span>::<span class="ident">Typing</span>, <span class="ident">uiaa</span>::<span class="ident">AuthData</span>,
         },
         <span class="ident">assign</span>,
         <span class="ident">directory</span>::<span class="ident">Filter</span>,
@@ -5719,10 +4920,25 @@
         .<span class="ident">match_header</span>(<span class="string">&quot;authorization&quot;</span>, <span class="string">&quot;Bearer 1234&quot;</span>)
         .<span class="ident">create</span>();
 
-        <span class="kw">let</span> <span class="ident">user</span> <span class="op">=</span> <span class="macro">user_id</span><span class="macro">!</span>(<span class="string">&quot;@example:localhost&quot;</span>);
-        <span class="kw">let</span> <span class="ident">room_id</span> <span class="op">=</span> <span class="macro">room_id</span><span class="macro">!</span>(<span class="string">&quot;!testroom:example.org&quot;</span>);
+        <span class="kw">let</span> <span class="ident">_m</span> <span class="op">=</span> <span class="ident">mock</span>(
+            <span class="string">&quot;GET&quot;</span>,
+            <span class="ident">Matcher</span>::<span class="ident">Regex</span>(<span class="string">r&quot;^/_matrix/client/r0/sync\?.*$&quot;</span>.<span class="ident">to_string</span>()),
+        )
+        .<span class="ident">with_status</span>(<span class="number">200</span>)
+        .<span class="ident">match_header</span>(<span class="string">&quot;authorization&quot;</span>, <span class="string">&quot;Bearer 1234&quot;</span>)
+        .<span class="ident">with_body</span>(<span class="ident">test_json</span>::<span class="ident">SYNC</span>.<span class="ident">to_string</span>())
+        .<span class="ident">create</span>();
 
-        <span class="ident">client</span>.<span class="ident">invite_user_by_id</span>(<span class="kw-2">&amp;</span><span class="ident">room_id</span>, <span class="kw-2">&amp;</span><span class="ident">user</span>).<span class="kw">await</span>.<span class="ident">unwrap</span>();
+        <span class="kw">let</span> <span class="ident">sync_settings</span> <span class="op">=</span> <span class="ident">SyncSettings</span>::<span class="ident">new</span>().<span class="ident">timeout</span>(<span class="ident">Duration</span>::<span class="ident">from_millis</span>(<span class="number">3000</span>));
+
+        <span class="kw">let</span> <span class="ident">_response</span> <span class="op">=</span> <span class="ident">client</span>.<span class="ident">sync_once</span>(<span class="ident">sync_settings</span>).<span class="kw">await</span>.<span class="ident">unwrap</span>();
+
+        <span class="kw">let</span> <span class="ident">user</span> <span class="op">=</span> <span class="macro">user_id</span><span class="macro">!</span>(<span class="string">&quot;@example:localhost&quot;</span>);
+        <span class="kw">let</span> <span class="ident">room</span> <span class="op">=</span> <span class="ident">client</span>
+            .<span class="ident">get_joined_room</span>(<span class="kw-2">&amp;</span><span class="macro">room_id</span><span class="macro">!</span>(<span class="string">&quot;!SVkFJHzfwvuaIEawgC:localhost&quot;</span>))
+            .<span class="ident">unwrap</span>();
+
+        <span class="ident">room</span>.<span class="ident">invite_user_by_id</span>(<span class="kw-2">&amp;</span><span class="ident">user</span>).<span class="kw">await</span>.<span class="ident">unwrap</span>();
     }
 
     <span class="attribute">#[<span class="ident">tokio</span>::<span class="ident">test</span>]</span>
@@ -5739,20 +4955,31 @@
         .<span class="ident">match_header</span>(<span class="string">&quot;authorization&quot;</span>, <span class="string">&quot;Bearer 1234&quot;</span>)
         .<span class="ident">create</span>();
 
-        <span class="kw">let</span> <span class="ident">room_id</span> <span class="op">=</span> <span class="macro">room_id</span><span class="macro">!</span>(<span class="string">&quot;!testroom:example.org&quot;</span>);
+        <span class="kw">let</span> <span class="ident">_m</span> <span class="op">=</span> <span class="ident">mock</span>(
+            <span class="string">&quot;GET&quot;</span>,
+            <span class="ident">Matcher</span>::<span class="ident">Regex</span>(<span class="string">r&quot;^/_matrix/client/r0/sync\?.*$&quot;</span>.<span class="ident">to_string</span>()),
+        )
+        .<span class="ident">with_status</span>(<span class="number">200</span>)
+        .<span class="ident">match_header</span>(<span class="string">&quot;authorization&quot;</span>, <span class="string">&quot;Bearer 1234&quot;</span>)
+        .<span class="ident">with_body</span>(<span class="ident">test_json</span>::<span class="ident">SYNC</span>.<span class="ident">to_string</span>())
+        .<span class="ident">create</span>();
 
-        <span class="ident">client</span>
-            .<span class="ident">invite_user_by_3pid</span>(
-                <span class="kw-2">&amp;</span><span class="ident">room_id</span>,
-                <span class="ident">Invite3pid</span> {
-                    <span class="ident">id_server</span>: <span class="string">&quot;example.org&quot;</span>,
-                    <span class="ident">id_access_token</span>: <span class="string">&quot;IdToken&quot;</span>,
-                    <span class="ident">medium</span>: <span class="ident">thirdparty</span>::<span class="ident">Medium</span>::<span class="ident">Email</span>,
-                    <span class="ident">address</span>: <span class="string">&quot;address&quot;</span>,
-                },
-            )
-            .<span class="kw">await</span>
+        <span class="kw">let</span> <span class="ident">sync_settings</span> <span class="op">=</span> <span class="ident">SyncSettings</span>::<span class="ident">new</span>().<span class="ident">timeout</span>(<span class="ident">Duration</span>::<span class="ident">from_millis</span>(<span class="number">3000</span>));
+
+        <span class="kw">let</span> <span class="ident">_response</span> <span class="op">=</span> <span class="ident">client</span>.<span class="ident">sync_once</span>(<span class="ident">sync_settings</span>).<span class="kw">await</span>.<span class="ident">unwrap</span>();
+
+        <span class="kw">let</span> <span class="ident">room</span> <span class="op">=</span> <span class="ident">client</span>
+            .<span class="ident">get_joined_room</span>(<span class="kw-2">&amp;</span><span class="macro">room_id</span><span class="macro">!</span>(<span class="string">&quot;!SVkFJHzfwvuaIEawgC:localhost&quot;</span>))
             .<span class="ident">unwrap</span>();
+
+        <span class="ident">room</span>.<span class="ident">invite_user_by_3pid</span>(<span class="ident">Invite3pid</span> {
+            <span class="ident">id_server</span>: <span class="string">&quot;example.org&quot;</span>,
+            <span class="ident">id_access_token</span>: <span class="string">&quot;IdToken&quot;</span>,
+            <span class="ident">medium</span>: <span class="ident">thirdparty</span>::<span class="ident">Medium</span>::<span class="ident">Email</span>,
+            <span class="ident">address</span>: <span class="string">&quot;address&quot;</span>,
+        })
+        .<span class="kw">await</span>
+        .<span class="ident">unwrap</span>();
     }
 
     <span class="attribute">#[<span class="ident">tokio</span>::<span class="ident">test</span>]</span>
@@ -5809,9 +5036,24 @@
         .<span class="ident">match_header</span>(<span class="string">&quot;authorization&quot;</span>, <span class="string">&quot;Bearer 1234&quot;</span>)
         .<span class="ident">create</span>();
 
-        <span class="kw">let</span> <span class="ident">room_id</span> <span class="op">=</span> <span class="macro">room_id</span><span class="macro">!</span>(<span class="string">&quot;!testroom:example.org&quot;</span>);
+        <span class="kw">let</span> <span class="ident">_m</span> <span class="op">=</span> <span class="ident">mock</span>(
+            <span class="string">&quot;GET&quot;</span>,
+            <span class="ident">Matcher</span>::<span class="ident">Regex</span>(<span class="string">r&quot;^/_matrix/client/r0/sync\?.*$&quot;</span>.<span class="ident">to_string</span>()),
+        )
+        .<span class="ident">with_status</span>(<span class="number">200</span>)
+        .<span class="ident">match_header</span>(<span class="string">&quot;authorization&quot;</span>, <span class="string">&quot;Bearer 1234&quot;</span>)
+        .<span class="ident">with_body</span>(<span class="ident">test_json</span>::<span class="ident">SYNC</span>.<span class="ident">to_string</span>())
+        .<span class="ident">create</span>();
 
-        <span class="ident">client</span>.<span class="ident">leave_room</span>(<span class="kw-2">&amp;</span><span class="ident">room_id</span>).<span class="kw">await</span>.<span class="ident">unwrap</span>();
+        <span class="kw">let</span> <span class="ident">sync_settings</span> <span class="op">=</span> <span class="ident">SyncSettings</span>::<span class="ident">new</span>().<span class="ident">timeout</span>(<span class="ident">Duration</span>::<span class="ident">from_millis</span>(<span class="number">3000</span>));
+
+        <span class="kw">let</span> <span class="ident">_response</span> <span class="op">=</span> <span class="ident">client</span>.<span class="ident">sync_once</span>(<span class="ident">sync_settings</span>).<span class="kw">await</span>.<span class="ident">unwrap</span>();
+
+        <span class="kw">let</span> <span class="ident">room</span> <span class="op">=</span> <span class="ident">client</span>
+            .<span class="ident">get_joined_room</span>(<span class="kw-2">&amp;</span><span class="macro">room_id</span><span class="macro">!</span>(<span class="string">&quot;!SVkFJHzfwvuaIEawgC:localhost&quot;</span>))
+            .<span class="ident">unwrap</span>();
+
+        <span class="ident">room</span>.<span class="ident">leave</span>().<span class="kw">await</span>.<span class="ident">unwrap</span>();
     }
 
     <span class="attribute">#[<span class="ident">tokio</span>::<span class="ident">test</span>]</span>
@@ -5828,9 +5070,25 @@
         .<span class="ident">match_header</span>(<span class="string">&quot;authorization&quot;</span>, <span class="string">&quot;Bearer 1234&quot;</span>)
         .<span class="ident">create</span>();
 
+        <span class="kw">let</span> <span class="ident">_m</span> <span class="op">=</span> <span class="ident">mock</span>(
+            <span class="string">&quot;GET&quot;</span>,
+            <span class="ident">Matcher</span>::<span class="ident">Regex</span>(<span class="string">r&quot;^/_matrix/client/r0/sync\?.*$&quot;</span>.<span class="ident">to_string</span>()),
+        )
+        .<span class="ident">with_status</span>(<span class="number">200</span>)
+        .<span class="ident">match_header</span>(<span class="string">&quot;authorization&quot;</span>, <span class="string">&quot;Bearer 1234&quot;</span>)
+        .<span class="ident">with_body</span>(<span class="ident">test_json</span>::<span class="ident">SYNC</span>.<span class="ident">to_string</span>())
+        .<span class="ident">create</span>();
+
+        <span class="kw">let</span> <span class="ident">sync_settings</span> <span class="op">=</span> <span class="ident">SyncSettings</span>::<span class="ident">new</span>().<span class="ident">timeout</span>(<span class="ident">Duration</span>::<span class="ident">from_millis</span>(<span class="number">3000</span>));
+
+        <span class="kw">let</span> <span class="ident">_response</span> <span class="op">=</span> <span class="ident">client</span>.<span class="ident">sync_once</span>(<span class="ident">sync_settings</span>).<span class="kw">await</span>.<span class="ident">unwrap</span>();
+
         <span class="kw">let</span> <span class="ident">user</span> <span class="op">=</span> <span class="macro">user_id</span><span class="macro">!</span>(<span class="string">&quot;@example:localhost&quot;</span>);
-        <span class="kw">let</span> <span class="ident">room_id</span> <span class="op">=</span> <span class="macro">room_id</span><span class="macro">!</span>(<span class="string">&quot;!testroom:example.org&quot;</span>);
-        <span class="ident">client</span>.<span class="ident">ban_user</span>(<span class="kw-2">&amp;</span><span class="ident">room_id</span>, <span class="kw-2">&amp;</span><span class="ident">user</span>, <span class="prelude-val">None</span>).<span class="kw">await</span>.<span class="ident">unwrap</span>();
+        <span class="kw">let</span> <span class="ident">room</span> <span class="op">=</span> <span class="ident">client</span>
+            .<span class="ident">get_joined_room</span>(<span class="kw-2">&amp;</span><span class="macro">room_id</span><span class="macro">!</span>(<span class="string">&quot;!SVkFJHzfwvuaIEawgC:localhost&quot;</span>))
+            .<span class="ident">unwrap</span>();
+
+        <span class="ident">room</span>.<span class="ident">ban_user</span>(<span class="kw-2">&amp;</span><span class="ident">user</span>, <span class="prelude-val">None</span>).<span class="kw">await</span>.<span class="ident">unwrap</span>();
     }
 
     <span class="attribute">#[<span class="ident">tokio</span>::<span class="ident">test</span>]</span>
@@ -5847,10 +5105,25 @@
         .<span class="ident">match_header</span>(<span class="string">&quot;authorization&quot;</span>, <span class="string">&quot;Bearer 1234&quot;</span>)
         .<span class="ident">create</span>();
 
-        <span class="kw">let</span> <span class="ident">user</span> <span class="op">=</span> <span class="macro">user_id</span><span class="macro">!</span>(<span class="string">&quot;@example:localhost&quot;</span>);
-        <span class="kw">let</span> <span class="ident">room_id</span> <span class="op">=</span> <span class="macro">room_id</span><span class="macro">!</span>(<span class="string">&quot;!testroom:example.org&quot;</span>);
+        <span class="kw">let</span> <span class="ident">_m</span> <span class="op">=</span> <span class="ident">mock</span>(
+            <span class="string">&quot;GET&quot;</span>,
+            <span class="ident">Matcher</span>::<span class="ident">Regex</span>(<span class="string">r&quot;^/_matrix/client/r0/sync\?.*$&quot;</span>.<span class="ident">to_string</span>()),
+        )
+        .<span class="ident">with_status</span>(<span class="number">200</span>)
+        .<span class="ident">match_header</span>(<span class="string">&quot;authorization&quot;</span>, <span class="string">&quot;Bearer 1234&quot;</span>)
+        .<span class="ident">with_body</span>(<span class="ident">test_json</span>::<span class="ident">SYNC</span>.<span class="ident">to_string</span>())
+        .<span class="ident">create</span>();
 
-        <span class="ident">client</span>.<span class="ident">kick_user</span>(<span class="kw-2">&amp;</span><span class="ident">room_id</span>, <span class="kw-2">&amp;</span><span class="ident">user</span>, <span class="prelude-val">None</span>).<span class="kw">await</span>.<span class="ident">unwrap</span>();
+        <span class="kw">let</span> <span class="ident">sync_settings</span> <span class="op">=</span> <span class="ident">SyncSettings</span>::<span class="ident">new</span>().<span class="ident">timeout</span>(<span class="ident">Duration</span>::<span class="ident">from_millis</span>(<span class="number">3000</span>));
+
+        <span class="kw">let</span> <span class="ident">_response</span> <span class="op">=</span> <span class="ident">client</span>.<span class="ident">sync_once</span>(<span class="ident">sync_settings</span>).<span class="kw">await</span>.<span class="ident">unwrap</span>();
+
+        <span class="kw">let</span> <span class="ident">user</span> <span class="op">=</span> <span class="macro">user_id</span><span class="macro">!</span>(<span class="string">&quot;@example:localhost&quot;</span>);
+        <span class="kw">let</span> <span class="ident">room</span> <span class="op">=</span> <span class="ident">client</span>
+            .<span class="ident">get_joined_room</span>(<span class="kw-2">&amp;</span><span class="macro">room_id</span><span class="macro">!</span>(<span class="string">&quot;!SVkFJHzfwvuaIEawgC:localhost&quot;</span>))
+            .<span class="ident">unwrap</span>();
+
+        <span class="ident">room</span>.<span class="ident">kick_user</span>(<span class="kw-2">&amp;</span><span class="ident">user</span>, <span class="prelude-val">None</span>).<span class="kw">await</span>.<span class="ident">unwrap</span>();
     }
 
     <span class="attribute">#[<span class="ident">tokio</span>::<span class="ident">test</span>]</span>
@@ -5867,9 +5140,24 @@
         .<span class="ident">match_header</span>(<span class="string">&quot;authorization&quot;</span>, <span class="string">&quot;Bearer 1234&quot;</span>)
         .<span class="ident">create</span>();
 
-        <span class="kw">let</span> <span class="ident">room_id</span> <span class="op">=</span> <span class="macro">room_id</span><span class="macro">!</span>(<span class="string">&quot;!testroom:example.org&quot;</span>);
+        <span class="kw">let</span> <span class="ident">_m</span> <span class="op">=</span> <span class="ident">mock</span>(
+            <span class="string">&quot;GET&quot;</span>,
+            <span class="ident">Matcher</span>::<span class="ident">Regex</span>(<span class="string">r&quot;^/_matrix/client/r0/sync\?.*$&quot;</span>.<span class="ident">to_string</span>()),
+        )
+        .<span class="ident">with_status</span>(<span class="number">200</span>)
+        .<span class="ident">match_header</span>(<span class="string">&quot;authorization&quot;</span>, <span class="string">&quot;Bearer 1234&quot;</span>)
+        .<span class="ident">with_body</span>(<span class="ident">test_json</span>::<span class="ident">LEAVE_SYNC</span>.<span class="ident">to_string</span>())
+        .<span class="ident">create</span>();
 
-        <span class="ident">client</span>.<span class="ident">forget_room_by_id</span>(<span class="kw-2">&amp;</span><span class="ident">room_id</span>).<span class="kw">await</span>.<span class="ident">unwrap</span>();
+        <span class="kw">let</span> <span class="ident">sync_settings</span> <span class="op">=</span> <span class="ident">SyncSettings</span>::<span class="ident">new</span>().<span class="ident">timeout</span>(<span class="ident">Duration</span>::<span class="ident">from_millis</span>(<span class="number">3000</span>));
+
+        <span class="kw">let</span> <span class="ident">_response</span> <span class="op">=</span> <span class="ident">client</span>.<span class="ident">sync_once</span>(<span class="ident">sync_settings</span>).<span class="kw">await</span>.<span class="ident">unwrap</span>();
+
+        <span class="kw">let</span> <span class="ident">room</span> <span class="op">=</span> <span class="ident">client</span>
+            .<span class="ident">get_left_room</span>(<span class="kw-2">&amp;</span><span class="macro">room_id</span><span class="macro">!</span>(<span class="string">&quot;!SVkFJHzfwvuaIEawgC:localhost&quot;</span>))
+            .<span class="ident">unwrap</span>();
+
+        <span class="ident">room</span>.<span class="ident">forget</span>().<span class="kw">await</span>.<span class="ident">unwrap</span>();
     }
 
     <span class="attribute">#[<span class="ident">tokio</span>::<span class="ident">test</span>]</span>
@@ -5886,10 +5174,25 @@
         .<span class="ident">match_header</span>(<span class="string">&quot;authorization&quot;</span>, <span class="string">&quot;Bearer 1234&quot;</span>)
         .<span class="ident">create</span>();
 
-        <span class="kw">let</span> <span class="ident">room_id</span> <span class="op">=</span> <span class="macro">room_id</span><span class="macro">!</span>(<span class="string">&quot;!testroom:example.org&quot;</span>);
-        <span class="kw">let</span> <span class="ident">event_id</span> <span class="op">=</span> <span class="macro">event_id</span><span class="macro">!</span>(<span class="string">&quot;$xxxxxx:example.org&quot;</span>);
+        <span class="kw">let</span> <span class="ident">_m</span> <span class="op">=</span> <span class="ident">mock</span>(
+            <span class="string">&quot;GET&quot;</span>,
+            <span class="ident">Matcher</span>::<span class="ident">Regex</span>(<span class="string">r&quot;^/_matrix/client/r0/sync\?.*$&quot;</span>.<span class="ident">to_string</span>()),
+        )
+        .<span class="ident">with_status</span>(<span class="number">200</span>)
+        .<span class="ident">match_header</span>(<span class="string">&quot;authorization&quot;</span>, <span class="string">&quot;Bearer 1234&quot;</span>)
+        .<span class="ident">with_body</span>(<span class="ident">test_json</span>::<span class="ident">SYNC</span>.<span class="ident">to_string</span>())
+        .<span class="ident">create</span>();
 
-        <span class="ident">client</span>.<span class="ident">read_receipt</span>(<span class="kw-2">&amp;</span><span class="ident">room_id</span>, <span class="kw-2">&amp;</span><span class="ident">event_id</span>).<span class="kw">await</span>.<span class="ident">unwrap</span>();
+        <span class="kw">let</span> <span class="ident">sync_settings</span> <span class="op">=</span> <span class="ident">SyncSettings</span>::<span class="ident">new</span>().<span class="ident">timeout</span>(<span class="ident">Duration</span>::<span class="ident">from_millis</span>(<span class="number">3000</span>));
+
+        <span class="kw">let</span> <span class="ident">_response</span> <span class="op">=</span> <span class="ident">client</span>.<span class="ident">sync_once</span>(<span class="ident">sync_settings</span>).<span class="kw">await</span>.<span class="ident">unwrap</span>();
+
+        <span class="kw">let</span> <span class="ident">event_id</span> <span class="op">=</span> <span class="macro">event_id</span><span class="macro">!</span>(<span class="string">&quot;$xxxxxx:example.org&quot;</span>);
+        <span class="kw">let</span> <span class="ident">room</span> <span class="op">=</span> <span class="ident">client</span>
+            .<span class="ident">get_joined_room</span>(<span class="kw-2">&amp;</span><span class="macro">room_id</span><span class="macro">!</span>(<span class="string">&quot;!SVkFJHzfwvuaIEawgC:localhost&quot;</span>))
+            .<span class="ident">unwrap</span>();
+
+        <span class="ident">room</span>.<span class="ident">read_receipt</span>(<span class="kw-2">&amp;</span><span class="ident">event_id</span>).<span class="kw">await</span>.<span class="ident">unwrap</span>();
     }
 
     <span class="attribute">#[<span class="ident">tokio</span>::<span class="ident">test</span>]</span>
@@ -5906,10 +5209,25 @@
         .<span class="ident">match_header</span>(<span class="string">&quot;authorization&quot;</span>, <span class="string">&quot;Bearer 1234&quot;</span>)
         .<span class="ident">create</span>();
 
-        <span class="kw">let</span> <span class="ident">room_id</span> <span class="op">=</span> <span class="macro">room_id</span><span class="macro">!</span>(<span class="string">&quot;!testroom:example.org&quot;</span>);
-        <span class="kw">let</span> <span class="ident">event_id</span> <span class="op">=</span> <span class="macro">event_id</span><span class="macro">!</span>(<span class="string">&quot;$xxxxxx:example.org&quot;</span>);
+        <span class="kw">let</span> <span class="ident">_m</span> <span class="op">=</span> <span class="ident">mock</span>(
+            <span class="string">&quot;GET&quot;</span>,
+            <span class="ident">Matcher</span>::<span class="ident">Regex</span>(<span class="string">r&quot;^/_matrix/client/r0/sync\?.*$&quot;</span>.<span class="ident">to_string</span>()),
+        )
+        .<span class="ident">with_status</span>(<span class="number">200</span>)
+        .<span class="ident">match_header</span>(<span class="string">&quot;authorization&quot;</span>, <span class="string">&quot;Bearer 1234&quot;</span>)
+        .<span class="ident">with_body</span>(<span class="ident">test_json</span>::<span class="ident">SYNC</span>.<span class="ident">to_string</span>())
+        .<span class="ident">create</span>();
 
-        <span class="ident">client</span>.<span class="ident">read_marker</span>(<span class="kw-2">&amp;</span><span class="ident">room_id</span>, <span class="kw-2">&amp;</span><span class="ident">event_id</span>, <span class="prelude-val">None</span>).<span class="kw">await</span>.<span class="ident">unwrap</span>();
+        <span class="kw">let</span> <span class="ident">sync_settings</span> <span class="op">=</span> <span class="ident">SyncSettings</span>::<span class="ident">new</span>().<span class="ident">timeout</span>(<span class="ident">Duration</span>::<span class="ident">from_millis</span>(<span class="number">3000</span>));
+
+        <span class="kw">let</span> <span class="ident">_response</span> <span class="op">=</span> <span class="ident">client</span>.<span class="ident">sync_once</span>(<span class="ident">sync_settings</span>).<span class="kw">await</span>.<span class="ident">unwrap</span>();
+
+        <span class="kw">let</span> <span class="ident">event_id</span> <span class="op">=</span> <span class="macro">event_id</span><span class="macro">!</span>(<span class="string">&quot;$xxxxxx:example.org&quot;</span>);
+        <span class="kw">let</span> <span class="ident">room</span> <span class="op">=</span> <span class="ident">client</span>
+            .<span class="ident">get_joined_room</span>(<span class="kw-2">&amp;</span><span class="macro">room_id</span><span class="macro">!</span>(<span class="string">&quot;!SVkFJHzfwvuaIEawgC:localhost&quot;</span>))
+            .<span class="ident">unwrap</span>();
+
+        <span class="ident">room</span>.<span class="ident">read_marker</span>(<span class="kw-2">&amp;</span><span class="ident">event_id</span>, <span class="prelude-val">None</span>).<span class="kw">await</span>.<span class="ident">unwrap</span>();
     }
 
     <span class="attribute">#[<span class="ident">tokio</span>::<span class="ident">test</span>]</span>
@@ -5926,12 +5244,74 @@
         .<span class="ident">match_header</span>(<span class="string">&quot;authorization&quot;</span>, <span class="string">&quot;Bearer 1234&quot;</span>)
         .<span class="ident">create</span>();
 
-        <span class="kw">let</span> <span class="ident">room_id</span> <span class="op">=</span> <span class="macro">room_id</span><span class="macro">!</span>(<span class="string">&quot;!testroom:example.org&quot;</span>);
+        <span class="kw">let</span> <span class="ident">_m</span> <span class="op">=</span> <span class="ident">mock</span>(
+            <span class="string">&quot;GET&quot;</span>,
+            <span class="ident">Matcher</span>::<span class="ident">Regex</span>(<span class="string">r&quot;^/_matrix/client/r0/sync\?.*$&quot;</span>.<span class="ident">to_string</span>()),
+        )
+        .<span class="ident">with_status</span>(<span class="number">200</span>)
+        .<span class="ident">match_header</span>(<span class="string">&quot;authorization&quot;</span>, <span class="string">&quot;Bearer 1234&quot;</span>)
+        .<span class="ident">with_body</span>(<span class="ident">test_json</span>::<span class="ident">SYNC</span>.<span class="ident">to_string</span>())
+        .<span class="ident">create</span>();
 
-        <span class="ident">client</span>
-            .<span class="ident">typing_notice</span>(<span class="kw-2">&amp;</span><span class="ident">room_id</span>, <span class="ident">Typing</span>::<span class="ident">Yes</span>(<span class="ident">std</span>::<span class="ident">time</span>::<span class="ident">Duration</span>::<span class="ident">from_secs</span>(<span class="number">1</span>)))
+        <span class="kw">let</span> <span class="ident">sync_settings</span> <span class="op">=</span> <span class="ident">SyncSettings</span>::<span class="ident">new</span>().<span class="ident">timeout</span>(<span class="ident">Duration</span>::<span class="ident">from_millis</span>(<span class="number">3000</span>));
+
+        <span class="kw">let</span> <span class="ident">_response</span> <span class="op">=</span> <span class="ident">client</span>.<span class="ident">sync_once</span>(<span class="ident">sync_settings</span>).<span class="kw">await</span>.<span class="ident">unwrap</span>();
+
+        <span class="kw">let</span> <span class="ident">room</span> <span class="op">=</span> <span class="ident">client</span>
+            .<span class="ident">get_joined_room</span>(<span class="kw-2">&amp;</span><span class="macro">room_id</span><span class="macro">!</span>(<span class="string">&quot;!SVkFJHzfwvuaIEawgC:localhost&quot;</span>))
+            .<span class="ident">unwrap</span>();
+
+        <span class="ident">room</span>.<span class="ident">typing_notice</span>(<span class="ident">Typing</span>::<span class="ident">Yes</span>(<span class="ident">std</span>::<span class="ident">time</span>::<span class="ident">Duration</span>::<span class="ident">from_secs</span>(<span class="number">1</span>)))
             .<span class="kw">await</span>
             .<span class="ident">unwrap</span>();
+    }
+
+    <span class="attribute">#[<span class="ident">tokio</span>::<span class="ident">test</span>]</span>
+    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">room_state_event_send</span>() {
+        <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">events</span>::{
+            <span class="ident">room</span>::<span class="ident">member</span>::{<span class="ident">MemberEventContent</span>, <span class="ident">MembershipState</span>},
+            <span class="ident">AnyStateEventContent</span>,
+        };
+
+        <span class="kw">let</span> <span class="ident">client</span> <span class="op">=</span> <span class="ident">logged_in_client</span>().<span class="kw">await</span>;
+
+        <span class="kw">let</span> <span class="ident">_m</span> <span class="op">=</span> <span class="ident">mock</span>(
+            <span class="string">&quot;PUT&quot;</span>,
+            <span class="ident">Matcher</span>::<span class="ident">Regex</span>(<span class="string">r&quot;^/_matrix/client/r0/rooms/.*/state/.*&quot;</span>.<span class="ident">to_string</span>()),
+        )
+        .<span class="ident">with_status</span>(<span class="number">200</span>)
+        .<span class="ident">match_header</span>(<span class="string">&quot;authorization&quot;</span>, <span class="string">&quot;Bearer 1234&quot;</span>)
+        .<span class="ident">with_body</span>(<span class="ident">test_json</span>::<span class="ident">EVENT_ID</span>.<span class="ident">to_string</span>())
+        .<span class="ident">create</span>();
+
+        <span class="kw">let</span> <span class="ident">_m</span> <span class="op">=</span> <span class="ident">mock</span>(
+            <span class="string">&quot;GET&quot;</span>,
+            <span class="ident">Matcher</span>::<span class="ident">Regex</span>(<span class="string">r&quot;^/_matrix/client/r0/sync\?.*$&quot;</span>.<span class="ident">to_string</span>()),
+        )
+        .<span class="ident">with_status</span>(<span class="number">200</span>)
+        .<span class="ident">match_header</span>(<span class="string">&quot;authorization&quot;</span>, <span class="string">&quot;Bearer 1234&quot;</span>)
+        .<span class="ident">with_body</span>(<span class="ident">test_json</span>::<span class="ident">SYNC</span>.<span class="ident">to_string</span>())
+        .<span class="ident">create</span>();
+
+        <span class="kw">let</span> <span class="ident">sync_settings</span> <span class="op">=</span> <span class="ident">SyncSettings</span>::<span class="ident">new</span>().<span class="ident">timeout</span>(<span class="ident">Duration</span>::<span class="ident">from_millis</span>(<span class="number">3000</span>));
+
+        <span class="kw">let</span> <span class="ident">_response</span> <span class="op">=</span> <span class="ident">client</span>.<span class="ident">sync_once</span>(<span class="ident">sync_settings</span>).<span class="kw">await</span>.<span class="ident">unwrap</span>();
+
+        <span class="kw">let</span> <span class="ident">room_id</span> <span class="op">=</span> <span class="macro">room_id</span><span class="macro">!</span>(<span class="string">&quot;!SVkFJHzfwvuaIEawgC:localhost&quot;</span>);
+
+        <span class="kw">let</span> <span class="ident">room</span> <span class="op">=</span> <span class="ident">client</span>.<span class="ident">get_joined_room</span>(<span class="kw-2">&amp;</span><span class="ident">room_id</span>).<span class="ident">unwrap</span>();
+
+        <span class="kw">let</span> <span class="ident">avatar_url</span> <span class="op">=</span> <span class="string">&quot;https://example.org/avatar&quot;</span>;
+        <span class="kw">let</span> <span class="ident">member_event</span> <span class="op">=</span> <span class="ident">MemberEventContent</span> {
+            <span class="ident">avatar_url</span>: <span class="prelude-val">Some</span>(<span class="ident">avatar_url</span>.<span class="ident">to_string</span>()),
+            <span class="ident">membership</span>: <span class="ident">MembershipState</span>::<span class="ident">Join</span>,
+            <span class="ident">is_direct</span>: <span class="prelude-val">None</span>,
+            <span class="ident">displayname</span>: <span class="prelude-val">None</span>,
+            <span class="ident">third_party_invite</span>: <span class="prelude-val">None</span>,
+        };
+        <span class="kw">let</span> <span class="ident">content</span> <span class="op">=</span> <span class="ident">AnyStateEventContent</span>::<span class="ident">RoomMember</span>(<span class="ident">member_event</span>);
+        <span class="kw">let</span> <span class="ident">response</span> <span class="op">=</span> <span class="ident">room</span>.<span class="ident">send_state_event</span>(<span class="ident">content</span>, <span class="string">&quot;&quot;</span>).<span class="kw">await</span>.<span class="ident">unwrap</span>();
+        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="macro">event_id</span><span class="macro">!</span>(<span class="string">&quot;$h29iv0s8:example.com&quot;</span>), <span class="ident">response</span>.<span class="ident">event_id</span>);
     }
 
     <span class="attribute">#[<span class="ident">tokio</span>::<span class="ident">test</span>]</span>
@@ -5949,15 +5329,27 @@
         .<span class="ident">with_body</span>(<span class="ident">test_json</span>::<span class="ident">EVENT_ID</span>.<span class="ident">to_string</span>())
         .<span class="ident">create</span>();
 
-        <span class="kw">let</span> <span class="ident">room_id</span> <span class="op">=</span> <span class="macro">room_id</span><span class="macro">!</span>(<span class="string">&quot;!testroom:example.org&quot;</span>);
+        <span class="kw">let</span> <span class="ident">_m</span> <span class="op">=</span> <span class="ident">mock</span>(
+            <span class="string">&quot;GET&quot;</span>,
+            <span class="ident">Matcher</span>::<span class="ident">Regex</span>(<span class="string">r&quot;^/_matrix/client/r0/sync\?.*$&quot;</span>.<span class="ident">to_string</span>()),
+        )
+        .<span class="ident">with_status</span>(<span class="number">200</span>)
+        .<span class="ident">match_header</span>(<span class="string">&quot;authorization&quot;</span>, <span class="string">&quot;Bearer 1234&quot;</span>)
+        .<span class="ident">with_body</span>(<span class="ident">test_json</span>::<span class="ident">SYNC</span>.<span class="ident">to_string</span>())
+        .<span class="ident">create</span>();
+
+        <span class="kw">let</span> <span class="ident">sync_settings</span> <span class="op">=</span> <span class="ident">SyncSettings</span>::<span class="ident">new</span>().<span class="ident">timeout</span>(<span class="ident">Duration</span>::<span class="ident">from_millis</span>(<span class="number">3000</span>));
+
+        <span class="kw">let</span> <span class="ident">_response</span> <span class="op">=</span> <span class="ident">client</span>.<span class="ident">sync_once</span>(<span class="ident">sync_settings</span>).<span class="kw">await</span>.<span class="ident">unwrap</span>();
+
+        <span class="kw">let</span> <span class="ident">room</span> <span class="op">=</span> <span class="ident">client</span>
+            .<span class="ident">get_joined_room</span>(<span class="kw-2">&amp;</span><span class="macro">room_id</span><span class="macro">!</span>(<span class="string">&quot;!SVkFJHzfwvuaIEawgC:localhost&quot;</span>))
+            .<span class="ident">unwrap</span>();
 
         <span class="kw">let</span> <span class="ident">content</span> <span class="op">=</span>
             <span class="ident">AnyMessageEventContent</span>::<span class="ident">RoomMessage</span>(<span class="ident">MessageEventContent</span>::<span class="ident">text_plain</span>(<span class="string">&quot;Hello world&quot;</span>));
         <span class="kw">let</span> <span class="ident">txn_id</span> <span class="op">=</span> <span class="ident">Uuid</span>::<span class="ident">new_v4</span>();
-        <span class="kw">let</span> <span class="ident">response</span> <span class="op">=</span> <span class="ident">client</span>
-            .<span class="ident">room_send</span>(<span class="kw-2">&amp;</span><span class="ident">room_id</span>, <span class="ident">content</span>, <span class="prelude-val">Some</span>(<span class="ident">txn_id</span>))
-            .<span class="kw">await</span>
-            .<span class="ident">unwrap</span>();
+        <span class="kw">let</span> <span class="ident">response</span> <span class="op">=</span> <span class="ident">room</span>.<span class="ident">send</span>(<span class="ident">content</span>, <span class="prelude-val">Some</span>(<span class="ident">txn_id</span>)).<span class="kw">await</span>.<span class="ident">unwrap</span>();
 
         <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="macro">event_id</span><span class="macro">!</span>(<span class="string">&quot;$h29iv0s8:example.com&quot;</span>), <span class="ident">response</span>.<span class="ident">event_id</span>)
     }
@@ -5989,12 +5381,27 @@
         )
         .<span class="ident">create</span>();
 
-        <span class="kw">let</span> <span class="ident">room_id</span> <span class="op">=</span> <span class="macro">room_id</span><span class="macro">!</span>(<span class="string">&quot;!testroom:example.org&quot;</span>);
+        <span class="kw">let</span> <span class="ident">_m</span> <span class="op">=</span> <span class="ident">mock</span>(
+            <span class="string">&quot;GET&quot;</span>,
+            <span class="ident">Matcher</span>::<span class="ident">Regex</span>(<span class="string">r&quot;^/_matrix/client/r0/sync\?.*$&quot;</span>.<span class="ident">to_string</span>()),
+        )
+        .<span class="ident">with_status</span>(<span class="number">200</span>)
+        .<span class="ident">match_header</span>(<span class="string">&quot;authorization&quot;</span>, <span class="string">&quot;Bearer 1234&quot;</span>)
+        .<span class="ident">with_body</span>(<span class="ident">test_json</span>::<span class="ident">SYNC</span>.<span class="ident">to_string</span>())
+        .<span class="ident">create</span>();
+
+        <span class="kw">let</span> <span class="ident">sync_settings</span> <span class="op">=</span> <span class="ident">SyncSettings</span>::<span class="ident">new</span>().<span class="ident">timeout</span>(<span class="ident">Duration</span>::<span class="ident">from_millis</span>(<span class="number">3000</span>));
+
+        <span class="kw">let</span> <span class="ident">_response</span> <span class="op">=</span> <span class="ident">client</span>.<span class="ident">sync_once</span>(<span class="ident">sync_settings</span>).<span class="kw">await</span>.<span class="ident">unwrap</span>();
+
+        <span class="kw">let</span> <span class="ident">room</span> <span class="op">=</span> <span class="ident">client</span>
+            .<span class="ident">get_joined_room</span>(<span class="kw-2">&amp;</span><span class="macro">room_id</span><span class="macro">!</span>(<span class="string">&quot;!SVkFJHzfwvuaIEawgC:localhost&quot;</span>))
+            .<span class="ident">unwrap</span>();
 
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">media</span> <span class="op">=</span> <span class="ident">Cursor</span>::<span class="ident">new</span>(<span class="string">&quot;Hello world&quot;</span>);
 
-        <span class="kw">let</span> <span class="ident">response</span> <span class="op">=</span> <span class="ident">client</span>
-            .<span class="ident">room_send_attachment</span>(<span class="kw-2">&amp;</span><span class="ident">room_id</span>, <span class="string">&quot;image&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">mime</span>::<span class="ident">IMAGE_JPEG</span>, <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">media</span>, <span class="prelude-val">None</span>)
+        <span class="kw">let</span> <span class="ident">response</span> <span class="op">=</span> <span class="ident">room</span>
+            .<span class="ident">send_attachment</span>(<span class="string">&quot;image&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">mime</span>::<span class="ident">IMAGE_JPEG</span>, <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">media</span>, <span class="prelude-val">None</span>)
             .<span class="kw">await</span>
             .<span class="ident">unwrap</span>();
 
@@ -6012,6 +5419,15 @@
         .<span class="ident">with_status</span>(<span class="number">200</span>)
         .<span class="ident">match_header</span>(<span class="string">&quot;authorization&quot;</span>, <span class="string">&quot;Bearer 1234&quot;</span>)
         .<span class="ident">with_body</span>(<span class="ident">test_json</span>::<span class="ident">SYNC</span>.<span class="ident">to_string</span>())
+        .<span class="ident">create</span>();
+
+        <span class="kw">let</span> <span class="ident">_m</span> <span class="op">=</span> <span class="ident">mock</span>(
+            <span class="string">&quot;GET&quot;</span>,
+            <span class="ident">Matcher</span>::<span class="ident">Regex</span>(<span class="string">r&quot;^/_matrix/client/r0/rooms/.*/members&quot;</span>.<span class="ident">to_string</span>()),
+        )
+        .<span class="ident">with_status</span>(<span class="number">200</span>)
+        .<span class="ident">match_header</span>(<span class="string">&quot;authorization&quot;</span>, <span class="string">&quot;Bearer 1234&quot;</span>)
+        .<span class="ident">with_body</span>(<span class="ident">test_json</span>::<span class="ident">MEMBERS</span>.<span class="ident">to_string</span>())
         .<span class="ident">create</span>();
 
         <span class="kw">let</span> <span class="ident">sync_settings</span> <span class="op">=</span> <span class="ident">SyncSettings</span>::<span class="ident">new</span>().<span class="ident">timeout</span>(<span class="ident">Duration</span>::<span class="ident">from_millis</span>(<span class="number">3000</span>));
@@ -6201,5 +5617,5 @@
     }
 }
 </pre></div>
-</section><section id="search" class="content hidden"></section><section class="footer"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="matrix_sdk"></div>
-    <script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script><script defer src="../../search-index.js"></script></body></html>
+</section><section id="search" class="content hidden"></section><section class="footer"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="matrix_sdk" data-search-js="../../search-index.js"></div>
+    <script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script></body></html>

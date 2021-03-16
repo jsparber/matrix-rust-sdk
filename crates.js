@@ -1,0 +1,1 @@
+window.ALL_CRATES = ["matrix_sdk","matrix_sdk_base","matrix_sdk_common","matrix_sdk_crypto","matrix_sdk_test","matrix_sdk_test_macros"];

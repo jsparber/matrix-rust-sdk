@@ -1,7 +1,7 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `matrix_sdk_base/src/event_handler/mod.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>mod.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings"></script><script src="../../../storage.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `matrix_sdk_base/src/event_handler/mod.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>mod.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings"></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
 <link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png">
-<link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../../matrix_sdk_base/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu"><img src="../../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><script src="../../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" class="help-button">?</button>
-                <a id="settings-menu" href="../../../settings.html"><img src="../../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">  1</span>
+<link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../matrix_sdk_base/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu"><img src="../../../brush.svg" width="18" height="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><script src="../../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" class="help-button">?</button>
+                <a id="settings-menu" href="../../../settings.html"><img src="../../../wheel.svg" width="18" height="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -817,65 +817,6 @@
 <span id="814">814</span>
 <span id="815">815</span>
 <span id="816">816</span>
-<span id="817">817</span>
-<span id="818">818</span>
-<span id="819">819</span>
-<span id="820">820</span>
-<span id="821">821</span>
-<span id="822">822</span>
-<span id="823">823</span>
-<span id="824">824</span>
-<span id="825">825</span>
-<span id="826">826</span>
-<span id="827">827</span>
-<span id="828">828</span>
-<span id="829">829</span>
-<span id="830">830</span>
-<span id="831">831</span>
-<span id="832">832</span>
-<span id="833">833</span>
-<span id="834">834</span>
-<span id="835">835</span>
-<span id="836">836</span>
-<span id="837">837</span>
-<span id="838">838</span>
-<span id="839">839</span>
-<span id="840">840</span>
-<span id="841">841</span>
-<span id="842">842</span>
-<span id="843">843</span>
-<span id="844">844</span>
-<span id="845">845</span>
-<span id="846">846</span>
-<span id="847">847</span>
-<span id="848">848</span>
-<span id="849">849</span>
-<span id="850">850</span>
-<span id="851">851</span>
-<span id="852">852</span>
-<span id="853">853</span>
-<span id="854">854</span>
-<span id="855">855</span>
-<span id="856">856</span>
-<span id="857">857</span>
-<span id="858">858</span>
-<span id="859">859</span>
-<span id="860">860</span>
-<span id="861">861</span>
-<span id="862">862</span>
-<span id="863">863</span>
-<span id="864">864</span>
-<span id="865">865</span>
-<span id="866">866</span>
-<span id="867">867</span>
-<span id="868">868</span>
-<span id="869">869</span>
-<span id="870">870</span>
-<span id="871">871</span>
-<span id="872">872</span>
-<span id="873">873</span>
-<span id="874">874</span>
-<span id="875">875</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Copyright 2020 Damir Jelić</span>
 <span class="comment">// Copyright 2020 The Matrix.org Foundation C.I.C.</span>
@@ -926,7 +867,7 @@
         <span class="ident">AnySyncStateEvent</span>, <span class="ident">BasicEvent</span>, <span class="ident">StrippedStateEvent</span>, <span class="ident">SyncEphemeralRoomEvent</span>,
         <span class="ident">SyncMessageEvent</span>, <span class="ident">SyncStateEvent</span>,
     },
-    <span class="ident">rooms</span>::<span class="ident">RoomState</span>,
+    <span class="ident">rooms</span>::<span class="ident">Room</span>,
     <span class="ident">Store</span>,
 };
 <span class="kw">use</span> <span class="ident">matrix_sdk_common</span>::<span class="ident">async_trait</span>;
@@ -945,7 +886,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">Handler</span> {
-    <span class="kw">fn</span> <span class="ident">get_room</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">room_id</span>: <span class="kw-2">&amp;</span><span class="ident">RoomId</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">RoomState</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">get_room</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">room_id</span>: <span class="kw-2">&amp;</span><span class="ident">RoomId</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Room</span><span class="op">&gt;</span> {
         <span class="self">self</span>.<span class="ident">store</span>.<span class="ident">get_room</span>(<span class="ident">room_id</span>)
     }
 
@@ -999,7 +940,7 @@
         }
     }
 
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">handle_timeline_event</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">room</span>: <span class="ident">RoomState</span>, <span class="ident">event</span>: <span class="kw-2">&amp;</span><span class="ident">AnySyncRoomEvent</span>) {
+    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">handle_timeline_event</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">room</span>: <span class="ident">Room</span>, <span class="ident">event</span>: <span class="kw-2">&amp;</span><span class="ident">AnySyncRoomEvent</span>) {
         <span class="kw">match</span> <span class="ident">event</span> {
             <span class="ident">AnySyncRoomEvent</span>::<span class="ident">State</span>(<span class="ident">event</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="kw">match</span> <span class="ident">event</span> {
                 <span class="ident">AnySyncStateEvent</span>::<span class="ident">RoomMember</span>(<span class="ident">e</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="self">self</span>.<span class="ident">on_room_member</span>(<span class="ident">room</span>, <span class="ident">e</span>).<span class="kw">await</span>,
@@ -1039,7 +980,7 @@
         }
     }
 
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">handle_state_event</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">room</span>: <span class="ident">RoomState</span>, <span class="ident">event</span>: <span class="kw-2">&amp;</span><span class="ident">AnySyncStateEvent</span>) {
+    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">handle_state_event</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">room</span>: <span class="ident">Room</span>, <span class="ident">event</span>: <span class="kw-2">&amp;</span><span class="ident">AnySyncStateEvent</span>) {
         <span class="kw">match</span> <span class="ident">event</span> {
             <span class="ident">AnySyncStateEvent</span>::<span class="ident">RoomMember</span>(<span class="ident">member</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="self">self</span>.<span class="ident">on_state_member</span>(<span class="ident">room</span>, <span class="kw-2">&amp;</span><span class="ident">member</span>).<span class="kw">await</span>,
             <span class="ident">AnySyncStateEvent</span>::<span class="ident">RoomName</span>(<span class="ident">name</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="self">self</span>.<span class="ident">on_state_name</span>(<span class="ident">room</span>, <span class="kw-2">&amp;</span><span class="ident">name</span>).<span class="kw">await</span>,
@@ -1067,7 +1008,7 @@
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">handle_stripped_state_event</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="comment">// TODO these events are only handleted in invited rooms.</span>
-        <span class="ident">room</span>: <span class="ident">RoomState</span>,
+        <span class="ident">room</span>: <span class="ident">Room</span>,
         <span class="ident">event</span>: <span class="kw-2">&amp;</span><span class="ident">AnyStrippedStateEvent</span>,
     ) {
         <span class="kw">match</span> <span class="ident">event</span> {
@@ -1095,7 +1036,7 @@
         }
     }
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">handle_account_data_event</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">room</span>: <span class="ident">RoomState</span>, <span class="ident">event</span>: <span class="kw-2">&amp;</span><span class="ident">AnyBasicEvent</span>) {
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">handle_account_data_event</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">room</span>: <span class="ident">Room</span>, <span class="ident">event</span>: <span class="kw-2">&amp;</span><span class="ident">AnyBasicEvent</span>) {
         <span class="kw">match</span> <span class="ident">event</span> {
             <span class="ident">AnyBasicEvent</span>::<span class="ident">Presence</span>(<span class="ident">presence</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="self">self</span>.<span class="ident">on_non_room_presence</span>(<span class="ident">room</span>, <span class="kw-2">&amp;</span><span class="ident">presence</span>).<span class="kw">await</span>,
             <span class="ident">AnyBasicEvent</span>::<span class="ident">IgnoredUserList</span>(<span class="ident">ignored</span>) <span class="op">=</span><span class="op">&gt;</span> {
@@ -1108,7 +1049,7 @@
 
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">handle_ephemeral_event</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">room</span>: <span class="ident">RoomState</span>,
+        <span class="ident">room</span>: <span class="ident">Room</span>,
         <span class="ident">event</span>: <span class="kw-2">&amp;</span><span class="ident">AnySyncEphemeralRoomEvent</span>,
     ) {
         <span class="kw">match</span> <span class="ident">event</span> {
@@ -1152,10 +1093,10 @@
 <span class="doccomment">/// # use matrix_sdk_base::{</span>
 <span class="doccomment">/// #     self,</span>
 <span class="doccomment">/// #     events::{</span>
-<span class="doccomment">/// #         room::message::{MessageEventContent, TextMessageEventContent},</span>
+<span class="doccomment">/// #         room::message::{MessageEventContent, MessageType, TextMessageEventContent},</span>
 <span class="doccomment">/// #         SyncMessageEvent</span>
 <span class="doccomment">/// #     },</span>
-<span class="doccomment">/// #     EventHandler, RoomState</span>
+<span class="doccomment">/// #     EventHandler, Room, RoomType,</span>
 <span class="doccomment">/// # };</span>
 <span class="doccomment">/// # use matrix_sdk_common::{async_trait, locks::RwLock};</span>
 <span class="doccomment">///</span>
@@ -1163,10 +1104,14 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// #[async_trait]</span>
 <span class="doccomment">/// impl EventHandler for EventCallback {</span>
-<span class="doccomment">///     async fn on_room_message(&amp;self, room: RoomState, event: &amp;SyncMessageEvent&lt;MessageEventContent&gt;) {</span>
-<span class="doccomment">///         if let RoomState::Joined(room) = room {</span>
+<span class="doccomment">///     async fn on_room_message(&amp;self, room: Room, event: &amp;SyncMessageEvent&lt;MessageEventContent&gt;) {</span>
+<span class="doccomment">///         if room.room_type() == RoomType::Joined {</span>
 <span class="doccomment">///             if let SyncMessageEvent {</span>
-<span class="doccomment">///                 content: MessageEventContent::Text(TextMessageEventContent { body: msg_body, .. }),</span>
+<span class="doccomment">///                 content:</span>
+<span class="doccomment">///                     MessageEventContent {</span>
+<span class="doccomment">///                         msgtype: MessageType::Text(TextMessageEventContent { body: msg_body, .. }),</span>
+<span class="doccomment">///                         ..</span>
+<span class="doccomment">///                     },</span>
 <span class="doccomment">///                 sender,</span>
 <span class="doccomment">///                 ..</span>
 <span class="doccomment">///             } = event</span>
@@ -1186,165 +1131,130 @@
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">EventHandler</span>: <span class="ident">Send</span> <span class="op">+</span> <span class="ident">Sync</span> {
     <span class="comment">// ROOM EVENTS from `IncomingTimeline`</span>
     <span class="doccomment">/// Fires when `Client` receives a `RoomEvent::RoomMember` event.</span>
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_room_member</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">RoomState</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncStateEvent</span><span class="op">&lt;</span><span class="ident">MemberEventContent</span><span class="op">&gt;</span>) {}
+    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_room_member</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">Room</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncStateEvent</span><span class="op">&lt;</span><span class="ident">MemberEventContent</span><span class="op">&gt;</span>) {}
     <span class="doccomment">/// Fires when `Client` receives a `RoomEvent::RoomName` event.</span>
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_room_name</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">RoomState</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncStateEvent</span><span class="op">&lt;</span><span class="ident">NameEventContent</span><span class="op">&gt;</span>) {}
+    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_room_name</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">Room</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncStateEvent</span><span class="op">&lt;</span><span class="ident">NameEventContent</span><span class="op">&gt;</span>) {}
     <span class="doccomment">/// Fires when `Client` receives a `RoomEvent::RoomCanonicalAlias` event.</span>
     <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_room_canonical_alias</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="kw">_</span>: <span class="ident">RoomState</span>,
+        <span class="kw">_</span>: <span class="ident">Room</span>,
         <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncStateEvent</span><span class="op">&lt;</span><span class="ident">CanonicalAliasEventContent</span><span class="op">&gt;</span>,
     ) {
     }
     <span class="doccomment">/// Fires when `Client` receives a `RoomEvent::RoomAliases` event.</span>
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_room_aliases</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">RoomState</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncStateEvent</span><span class="op">&lt;</span><span class="ident">AliasesEventContent</span><span class="op">&gt;</span>) {}
+    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_room_aliases</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">Room</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncStateEvent</span><span class="op">&lt;</span><span class="ident">AliasesEventContent</span><span class="op">&gt;</span>) {}
     <span class="doccomment">/// Fires when `Client` receives a `RoomEvent::RoomAvatar` event.</span>
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_room_avatar</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">RoomState</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncStateEvent</span><span class="op">&lt;</span><span class="ident">AvatarEventContent</span><span class="op">&gt;</span>) {}
+    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_room_avatar</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">Room</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncStateEvent</span><span class="op">&lt;</span><span class="ident">AvatarEventContent</span><span class="op">&gt;</span>) {}
     <span class="doccomment">/// Fires when `Client` receives a `RoomEvent::RoomMessage` event.</span>
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_room_message</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">RoomState</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncMessageEvent</span><span class="op">&lt;</span><span class="ident">MsgEventContent</span><span class="op">&gt;</span>) {}
+    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_room_message</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">Room</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncMessageEvent</span><span class="op">&lt;</span><span class="ident">MsgEventContent</span><span class="op">&gt;</span>) {}
     <span class="doccomment">/// Fires when `Client` receives a `RoomEvent::RoomMessageFeedback` event.</span>
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_room_message_feedback</span>(
-        <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="kw">_</span>: <span class="ident">RoomState</span>,
-        <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncMessageEvent</span><span class="op">&lt;</span><span class="ident">FeedbackEventContent</span><span class="op">&gt;</span>,
-    ) {
-    }
+    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_room_message_feedback</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">Room</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncMessageEvent</span><span class="op">&lt;</span><span class="ident">FeedbackEventContent</span><span class="op">&gt;</span>) {}
     <span class="doccomment">/// Fires when `Client` receives a `RoomEvent::CallInvite` event</span>
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_room_call_invite</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">RoomState</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncMessageEvent</span><span class="op">&lt;</span><span class="ident">InviteEventContent</span><span class="op">&gt;</span>) {}
+    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_room_call_invite</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">Room</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncMessageEvent</span><span class="op">&lt;</span><span class="ident">InviteEventContent</span><span class="op">&gt;</span>) {}
     <span class="doccomment">/// Fires when `Client` receives a `RoomEvent::CallAnswer` event</span>
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_room_call_answer</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">RoomState</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncMessageEvent</span><span class="op">&lt;</span><span class="ident">AnswerEventContent</span><span class="op">&gt;</span>) {}
+    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_room_call_answer</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">Room</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncMessageEvent</span><span class="op">&lt;</span><span class="ident">AnswerEventContent</span><span class="op">&gt;</span>) {}
     <span class="doccomment">/// Fires when `Client` receives a `RoomEvent::CallCandidates` event</span>
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_room_call_candidates</span>(
-        <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="kw">_</span>: <span class="ident">RoomState</span>,
-        <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncMessageEvent</span><span class="op">&lt;</span><span class="ident">CandidatesEventContent</span><span class="op">&gt;</span>,
-    ) {
+    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_room_call_candidates</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">Room</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncMessageEvent</span><span class="op">&lt;</span><span class="ident">CandidatesEventContent</span><span class="op">&gt;</span>) {
     }
     <span class="doccomment">/// Fires when `Client` receives a `RoomEvent::CallHangup` event</span>
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_room_call_hangup</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">RoomState</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncMessageEvent</span><span class="op">&lt;</span><span class="ident">HangupEventContent</span><span class="op">&gt;</span>) {}
+    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_room_call_hangup</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">Room</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncMessageEvent</span><span class="op">&lt;</span><span class="ident">HangupEventContent</span><span class="op">&gt;</span>) {}
     <span class="doccomment">/// Fires when `Client` receives a `RoomEvent::RoomRedaction` event.</span>
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_room_redaction</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">RoomState</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncRedactionEvent</span>) {}
+    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_room_redaction</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">Room</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncRedactionEvent</span>) {}
     <span class="doccomment">/// Fires when `Client` receives a `RoomEvent::RoomPowerLevels` event.</span>
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_room_power_levels</span>(
-        <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="kw">_</span>: <span class="ident">RoomState</span>,
-        <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncStateEvent</span><span class="op">&lt;</span><span class="ident">PowerLevelsEventContent</span><span class="op">&gt;</span>,
-    ) {
-    }
+    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_room_power_levels</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">Room</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncStateEvent</span><span class="op">&lt;</span><span class="ident">PowerLevelsEventContent</span><span class="op">&gt;</span>) {}
     <span class="doccomment">/// Fires when `Client` receives a `RoomEvent::Tombstone` event.</span>
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_room_join_rules</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">RoomState</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncStateEvent</span><span class="op">&lt;</span><span class="ident">JoinRulesEventContent</span><span class="op">&gt;</span>) {}
+    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_room_join_rules</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">Room</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncStateEvent</span><span class="op">&lt;</span><span class="ident">JoinRulesEventContent</span><span class="op">&gt;</span>) {}
     <span class="doccomment">/// Fires when `Client` receives a `RoomEvent::Tombstone` event.</span>
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_room_tombstone</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">RoomState</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncStateEvent</span><span class="op">&lt;</span><span class="ident">TombstoneEventContent</span><span class="op">&gt;</span>) {}
+    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_room_tombstone</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">Room</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncStateEvent</span><span class="op">&lt;</span><span class="ident">TombstoneEventContent</span><span class="op">&gt;</span>) {}
 
     <span class="comment">// `RoomEvent`s from `IncomingState`</span>
     <span class="doccomment">/// Fires when `Client` receives a `StateEvent::RoomMember` event.</span>
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_state_member</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">RoomState</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncStateEvent</span><span class="op">&lt;</span><span class="ident">MemberEventContent</span><span class="op">&gt;</span>) {}
+    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_state_member</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">Room</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncStateEvent</span><span class="op">&lt;</span><span class="ident">MemberEventContent</span><span class="op">&gt;</span>) {}
     <span class="doccomment">/// Fires when `Client` receives a `StateEvent::RoomName` event.</span>
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_state_name</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">RoomState</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncStateEvent</span><span class="op">&lt;</span><span class="ident">NameEventContent</span><span class="op">&gt;</span>) {}
+    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_state_name</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">Room</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncStateEvent</span><span class="op">&lt;</span><span class="ident">NameEventContent</span><span class="op">&gt;</span>) {}
     <span class="doccomment">/// Fires when `Client` receives a `StateEvent::RoomCanonicalAlias` event.</span>
     <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_state_canonical_alias</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="kw">_</span>: <span class="ident">RoomState</span>,
+        <span class="kw">_</span>: <span class="ident">Room</span>,
         <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncStateEvent</span><span class="op">&lt;</span><span class="ident">CanonicalAliasEventContent</span><span class="op">&gt;</span>,
     ) {
     }
     <span class="doccomment">/// Fires when `Client` receives a `StateEvent::RoomAliases` event.</span>
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_state_aliases</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">RoomState</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncStateEvent</span><span class="op">&lt;</span><span class="ident">AliasesEventContent</span><span class="op">&gt;</span>) {}
+    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_state_aliases</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">Room</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncStateEvent</span><span class="op">&lt;</span><span class="ident">AliasesEventContent</span><span class="op">&gt;</span>) {}
     <span class="doccomment">/// Fires when `Client` receives a `StateEvent::RoomAvatar` event.</span>
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_state_avatar</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">RoomState</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncStateEvent</span><span class="op">&lt;</span><span class="ident">AvatarEventContent</span><span class="op">&gt;</span>) {}
+    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_state_avatar</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">Room</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncStateEvent</span><span class="op">&lt;</span><span class="ident">AvatarEventContent</span><span class="op">&gt;</span>) {}
     <span class="doccomment">/// Fires when `Client` receives a `StateEvent::RoomPowerLevels` event.</span>
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_state_power_levels</span>(
-        <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="kw">_</span>: <span class="ident">RoomState</span>,
-        <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncStateEvent</span><span class="op">&lt;</span><span class="ident">PowerLevelsEventContent</span><span class="op">&gt;</span>,
-    ) {
-    }
+    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_state_power_levels</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">Room</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncStateEvent</span><span class="op">&lt;</span><span class="ident">PowerLevelsEventContent</span><span class="op">&gt;</span>) {}
     <span class="doccomment">/// Fires when `Client` receives a `StateEvent::RoomJoinRules` event.</span>
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_state_join_rules</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">RoomState</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncStateEvent</span><span class="op">&lt;</span><span class="ident">JoinRulesEventContent</span><span class="op">&gt;</span>) {}
+    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_state_join_rules</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">Room</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncStateEvent</span><span class="op">&lt;</span><span class="ident">JoinRulesEventContent</span><span class="op">&gt;</span>) {}
 
     <span class="comment">// `AnyStrippedStateEvent`s</span>
     <span class="doccomment">/// Fires when `Client` receives a `AnyStrippedStateEvent::StrippedRoomMember` event.</span>
     <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_stripped_state_member</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="kw">_</span>: <span class="ident">RoomState</span>,
+        <span class="kw">_</span>: <span class="ident">Room</span>,
         <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">StrippedStateEvent</span><span class="op">&lt;</span><span class="ident">MemberEventContent</span><span class="op">&gt;</span>,
         <span class="kw">_</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">MemberEventContent</span><span class="op">&gt;</span>,
     ) {
     }
     <span class="doccomment">/// Fires when `Client` receives a `AnyStrippedStateEvent::StrippedRoomName` event.</span>
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_stripped_state_name</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">RoomState</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">StrippedStateEvent</span><span class="op">&lt;</span><span class="ident">NameEventContent</span><span class="op">&gt;</span>) {
-    }
+    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_stripped_state_name</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">Room</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">StrippedStateEvent</span><span class="op">&lt;</span><span class="ident">NameEventContent</span><span class="op">&gt;</span>) {}
     <span class="doccomment">/// Fires when `Client` receives a `AnyStrippedStateEvent::StrippedRoomCanonicalAlias` event.</span>
     <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_stripped_state_canonical_alias</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="kw">_</span>: <span class="ident">RoomState</span>,
+        <span class="kw">_</span>: <span class="ident">Room</span>,
         <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">StrippedStateEvent</span><span class="op">&lt;</span><span class="ident">CanonicalAliasEventContent</span><span class="op">&gt;</span>,
     ) {
     }
     <span class="doccomment">/// Fires when `Client` receives a `AnyStrippedStateEvent::StrippedRoomAliases` event.</span>
     <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_stripped_state_aliases</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="kw">_</span>: <span class="ident">RoomState</span>,
+        <span class="kw">_</span>: <span class="ident">Room</span>,
         <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">StrippedStateEvent</span><span class="op">&lt;</span><span class="ident">AliasesEventContent</span><span class="op">&gt;</span>,
     ) {
     }
     <span class="doccomment">/// Fires when `Client` receives a `AnyStrippedStateEvent::StrippedRoomAvatar` event.</span>
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_stripped_state_avatar</span>(
-        <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="kw">_</span>: <span class="ident">RoomState</span>,
-        <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">StrippedStateEvent</span><span class="op">&lt;</span><span class="ident">AvatarEventContent</span><span class="op">&gt;</span>,
-    ) {
-    }
+    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_stripped_state_avatar</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">Room</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">StrippedStateEvent</span><span class="op">&lt;</span><span class="ident">AvatarEventContent</span><span class="op">&gt;</span>) {}
     <span class="doccomment">/// Fires when `Client` receives a `AnyStrippedStateEvent::StrippedRoomPowerLevels` event.</span>
     <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_stripped_state_power_levels</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="kw">_</span>: <span class="ident">RoomState</span>,
+        <span class="kw">_</span>: <span class="ident">Room</span>,
         <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">StrippedStateEvent</span><span class="op">&lt;</span><span class="ident">PowerLevelsEventContent</span><span class="op">&gt;</span>,
     ) {
     }
     <span class="doccomment">/// Fires when `Client` receives a `AnyStrippedStateEvent::StrippedRoomJoinRules` event.</span>
     <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_stripped_state_join_rules</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="kw">_</span>: <span class="ident">RoomState</span>,
+        <span class="kw">_</span>: <span class="ident">Room</span>,
         <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">StrippedStateEvent</span><span class="op">&lt;</span><span class="ident">JoinRulesEventContent</span><span class="op">&gt;</span>,
     ) {
     }
 
     <span class="comment">// `NonRoomEvent` (this is a type alias from ruma_events)</span>
     <span class="doccomment">/// Fires when `Client` receives a `NonRoomEvent::RoomPresence` event.</span>
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_non_room_presence</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">RoomState</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">PresenceEvent</span>) {}
+    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_non_room_presence</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">Room</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">PresenceEvent</span>) {}
     <span class="doccomment">/// Fires when `Client` receives a `NonRoomEvent::RoomName` event.</span>
     <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_non_room_ignored_users</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="kw">_</span>: <span class="ident">RoomState</span>,
+        <span class="kw">_</span>: <span class="ident">Room</span>,
         <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">BasicEvent</span><span class="op">&lt;</span><span class="ident">IgnoredUserListEventContent</span><span class="op">&gt;</span>,
     ) {
     }
     <span class="doccomment">/// Fires when `Client` receives a `NonRoomEvent::RoomCanonicalAlias` event.</span>
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_non_room_push_rules</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">RoomState</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">BasicEvent</span><span class="op">&lt;</span><span class="ident">PushRulesEventContent</span><span class="op">&gt;</span>) {}
+    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_non_room_push_rules</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">Room</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">BasicEvent</span><span class="op">&lt;</span><span class="ident">PushRulesEventContent</span><span class="op">&gt;</span>) {}
     <span class="doccomment">/// Fires when `Client` receives a `NonRoomEvent::RoomAliases` event.</span>
     <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_non_room_fully_read</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="kw">_</span>: <span class="ident">RoomState</span>,
+        <span class="kw">_</span>: <span class="ident">Room</span>,
         <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncEphemeralRoomEvent</span><span class="op">&lt;</span><span class="ident">FullyReadEventContent</span><span class="op">&gt;</span>,
     ) {
     }
     <span class="doccomment">/// Fires when `Client` receives a `NonRoomEvent::Typing` event.</span>
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_non_room_typing</span>(
-        <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="kw">_</span>: <span class="ident">RoomState</span>,
-        <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncEphemeralRoomEvent</span><span class="op">&lt;</span><span class="ident">TypingEventContent</span><span class="op">&gt;</span>,
-    ) {
-    }
+    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_non_room_typing</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">Room</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncEphemeralRoomEvent</span><span class="op">&lt;</span><span class="ident">TypingEventContent</span><span class="op">&gt;</span>) {}
     <span class="doccomment">/// Fires when `Client` receives a `NonRoomEvent::Receipt` event.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is always a read receipt.</span>
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_non_room_receipt</span>(
-        <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="kw">_</span>: <span class="ident">RoomState</span>,
-        <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncEphemeralRoomEvent</span><span class="op">&lt;</span><span class="ident">ReceiptEventContent</span><span class="op">&gt;</span>,
-    ) {
-    }
+    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_non_room_receipt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">Room</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncEphemeralRoomEvent</span><span class="op">&lt;</span><span class="ident">ReceiptEventContent</span><span class="op">&gt;</span>) {}
 
     <span class="comment">// `PresenceEvent` is a struct so there is only the one method</span>
     <span class="doccomment">/// Fires when `Client` receives a `NonRoomEvent::RoomAliases` event.</span>
@@ -1354,14 +1264,14 @@
     <span class="doccomment">/// because the event was unknown to ruma.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The only guarantee this method can give about the event is that it is valid JSON.</span>
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_unrecognized_event</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">RoomState</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">RawJsonValue</span>) {}
+    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_unrecognized_event</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">Room</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">RawJsonValue</span>) {}
 
     <span class="doccomment">/// Fires when `Client` receives a `Event::Custom` event or if deserialization fails</span>
     <span class="doccomment">/// because the event was unknown to ruma.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The only guarantee this method can give about the event is that it is in the</span>
     <span class="doccomment">/// shape of a valid matrix event.</span>
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_custom_event</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">RoomState</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">CustomEvent</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) {}
+    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_custom_event</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">Room</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">CustomEvent</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) {}
 }
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
@@ -1380,108 +1290,88 @@
     <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;wasm32&quot;</span>, <span class="ident">async_trait</span>(<span class="question-mark">?</span><span class="ident">Send</span>))]</span>
     <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">not</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;wasm32&quot;</span>), <span class="ident">async_trait</span>)]</span>
     <span class="kw">impl</span> <span class="ident">EventHandler</span> <span class="kw">for</span> <span class="ident">EvHandlerTest</span> {
-        <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_room_member</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">RoomState</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncStateEvent</span><span class="op">&lt;</span><span class="ident">MemberEventContent</span><span class="op">&gt;</span>) {
+        <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_room_member</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">Room</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncStateEvent</span><span class="op">&lt;</span><span class="ident">MemberEventContent</span><span class="op">&gt;</span>) {
             <span class="self">self</span>.<span class="number">0</span>.<span class="ident">lock</span>().<span class="kw">await</span>.<span class="ident">push</span>(<span class="string">&quot;member&quot;</span>.<span class="ident">to_string</span>())
         }
-        <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_room_name</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">RoomState</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncStateEvent</span><span class="op">&lt;</span><span class="ident">NameEventContent</span><span class="op">&gt;</span>) {
+        <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_room_name</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">Room</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncStateEvent</span><span class="op">&lt;</span><span class="ident">NameEventContent</span><span class="op">&gt;</span>) {
             <span class="self">self</span>.<span class="number">0</span>.<span class="ident">lock</span>().<span class="kw">await</span>.<span class="ident">push</span>(<span class="string">&quot;name&quot;</span>.<span class="ident">to_string</span>())
         }
         <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_room_canonical_alias</span>(
             <span class="kw-2">&amp;</span><span class="self">self</span>,
-            <span class="kw">_</span>: <span class="ident">RoomState</span>,
+            <span class="kw">_</span>: <span class="ident">Room</span>,
             <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncStateEvent</span><span class="op">&lt;</span><span class="ident">CanonicalAliasEventContent</span><span class="op">&gt;</span>,
         ) {
             <span class="self">self</span>.<span class="number">0</span>.<span class="ident">lock</span>().<span class="kw">await</span>.<span class="ident">push</span>(<span class="string">&quot;canonical&quot;</span>.<span class="ident">to_string</span>())
         }
-        <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_room_aliases</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">RoomState</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncStateEvent</span><span class="op">&lt;</span><span class="ident">AliasesEventContent</span><span class="op">&gt;</span>) {
+        <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_room_aliases</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">Room</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncStateEvent</span><span class="op">&lt;</span><span class="ident">AliasesEventContent</span><span class="op">&gt;</span>) {
             <span class="self">self</span>.<span class="number">0</span>.<span class="ident">lock</span>().<span class="kw">await</span>.<span class="ident">push</span>(<span class="string">&quot;aliases&quot;</span>.<span class="ident">to_string</span>())
         }
-        <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_room_avatar</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">RoomState</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncStateEvent</span><span class="op">&lt;</span><span class="ident">AvatarEventContent</span><span class="op">&gt;</span>) {
+        <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_room_avatar</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">Room</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncStateEvent</span><span class="op">&lt;</span><span class="ident">AvatarEventContent</span><span class="op">&gt;</span>) {
             <span class="self">self</span>.<span class="number">0</span>.<span class="ident">lock</span>().<span class="kw">await</span>.<span class="ident">push</span>(<span class="string">&quot;avatar&quot;</span>.<span class="ident">to_string</span>())
         }
-        <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_room_message</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">RoomState</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncMessageEvent</span><span class="op">&lt;</span><span class="ident">MsgEventContent</span><span class="op">&gt;</span>) {
+        <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_room_message</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">Room</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncMessageEvent</span><span class="op">&lt;</span><span class="ident">MsgEventContent</span><span class="op">&gt;</span>) {
             <span class="self">self</span>.<span class="number">0</span>.<span class="ident">lock</span>().<span class="kw">await</span>.<span class="ident">push</span>(<span class="string">&quot;message&quot;</span>.<span class="ident">to_string</span>())
         }
         <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_room_message_feedback</span>(
             <span class="kw-2">&amp;</span><span class="self">self</span>,
-            <span class="kw">_</span>: <span class="ident">RoomState</span>,
+            <span class="kw">_</span>: <span class="ident">Room</span>,
             <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncMessageEvent</span><span class="op">&lt;</span><span class="ident">FeedbackEventContent</span><span class="op">&gt;</span>,
         ) {
             <span class="self">self</span>.<span class="number">0</span>.<span class="ident">lock</span>().<span class="kw">await</span>.<span class="ident">push</span>(<span class="string">&quot;feedback&quot;</span>.<span class="ident">to_string</span>())
         }
-        <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_room_call_invite</span>(
-            <span class="kw-2">&amp;</span><span class="self">self</span>,
-            <span class="kw">_</span>: <span class="ident">RoomState</span>,
-            <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncMessageEvent</span><span class="op">&lt;</span><span class="ident">InviteEventContent</span><span class="op">&gt;</span>,
-        ) {
+        <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_room_call_invite</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">Room</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncMessageEvent</span><span class="op">&lt;</span><span class="ident">InviteEventContent</span><span class="op">&gt;</span>) {
             <span class="self">self</span>.<span class="number">0</span>.<span class="ident">lock</span>().<span class="kw">await</span>.<span class="ident">push</span>(<span class="string">&quot;call invite&quot;</span>.<span class="ident">to_string</span>())
         }
-        <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_room_call_answer</span>(
-            <span class="kw-2">&amp;</span><span class="self">self</span>,
-            <span class="kw">_</span>: <span class="ident">RoomState</span>,
-            <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncMessageEvent</span><span class="op">&lt;</span><span class="ident">AnswerEventContent</span><span class="op">&gt;</span>,
-        ) {
+        <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_room_call_answer</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">Room</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncMessageEvent</span><span class="op">&lt;</span><span class="ident">AnswerEventContent</span><span class="op">&gt;</span>) {
             <span class="self">self</span>.<span class="number">0</span>.<span class="ident">lock</span>().<span class="kw">await</span>.<span class="ident">push</span>(<span class="string">&quot;call answer&quot;</span>.<span class="ident">to_string</span>())
         }
         <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_room_call_candidates</span>(
             <span class="kw-2">&amp;</span><span class="self">self</span>,
-            <span class="kw">_</span>: <span class="ident">RoomState</span>,
+            <span class="kw">_</span>: <span class="ident">Room</span>,
             <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncMessageEvent</span><span class="op">&lt;</span><span class="ident">CandidatesEventContent</span><span class="op">&gt;</span>,
         ) {
             <span class="self">self</span>.<span class="number">0</span>.<span class="ident">lock</span>().<span class="kw">await</span>.<span class="ident">push</span>(<span class="string">&quot;call candidates&quot;</span>.<span class="ident">to_string</span>())
         }
-        <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_room_call_hangup</span>(
-            <span class="kw-2">&amp;</span><span class="self">self</span>,
-            <span class="kw">_</span>: <span class="ident">RoomState</span>,
-            <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncMessageEvent</span><span class="op">&lt;</span><span class="ident">HangupEventContent</span><span class="op">&gt;</span>,
-        ) {
+        <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_room_call_hangup</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">Room</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncMessageEvent</span><span class="op">&lt;</span><span class="ident">HangupEventContent</span><span class="op">&gt;</span>) {
             <span class="self">self</span>.<span class="number">0</span>.<span class="ident">lock</span>().<span class="kw">await</span>.<span class="ident">push</span>(<span class="string">&quot;call hangup&quot;</span>.<span class="ident">to_string</span>())
         }
-        <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_room_redaction</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">RoomState</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncRedactionEvent</span>) {
+        <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_room_redaction</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">Room</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncRedactionEvent</span>) {
             <span class="self">self</span>.<span class="number">0</span>.<span class="ident">lock</span>().<span class="kw">await</span>.<span class="ident">push</span>(<span class="string">&quot;redaction&quot;</span>.<span class="ident">to_string</span>())
         }
-        <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_room_power_levels</span>(
-            <span class="kw-2">&amp;</span><span class="self">self</span>,
-            <span class="kw">_</span>: <span class="ident">RoomState</span>,
-            <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncStateEvent</span><span class="op">&lt;</span><span class="ident">PowerLevelsEventContent</span><span class="op">&gt;</span>,
-        ) {
+        <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_room_power_levels</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">Room</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncStateEvent</span><span class="op">&lt;</span><span class="ident">PowerLevelsEventContent</span><span class="op">&gt;</span>) {
             <span class="self">self</span>.<span class="number">0</span>.<span class="ident">lock</span>().<span class="kw">await</span>.<span class="ident">push</span>(<span class="string">&quot;power&quot;</span>.<span class="ident">to_string</span>())
         }
-        <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_room_tombstone</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">RoomState</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncStateEvent</span><span class="op">&lt;</span><span class="ident">TombstoneEventContent</span><span class="op">&gt;</span>) {
+        <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_room_tombstone</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">Room</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncStateEvent</span><span class="op">&lt;</span><span class="ident">TombstoneEventContent</span><span class="op">&gt;</span>) {
             <span class="self">self</span>.<span class="number">0</span>.<span class="ident">lock</span>().<span class="kw">await</span>.<span class="ident">push</span>(<span class="string">&quot;tombstone&quot;</span>.<span class="ident">to_string</span>())
         }
 
-        <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_state_member</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">RoomState</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncStateEvent</span><span class="op">&lt;</span><span class="ident">MemberEventContent</span><span class="op">&gt;</span>) {
+        <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_state_member</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">Room</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncStateEvent</span><span class="op">&lt;</span><span class="ident">MemberEventContent</span><span class="op">&gt;</span>) {
             <span class="self">self</span>.<span class="number">0</span>.<span class="ident">lock</span>().<span class="kw">await</span>.<span class="ident">push</span>(<span class="string">&quot;state member&quot;</span>.<span class="ident">to_string</span>())
         }
-        <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_state_name</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">RoomState</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncStateEvent</span><span class="op">&lt;</span><span class="ident">NameEventContent</span><span class="op">&gt;</span>) {
+        <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_state_name</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">Room</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncStateEvent</span><span class="op">&lt;</span><span class="ident">NameEventContent</span><span class="op">&gt;</span>) {
             <span class="self">self</span>.<span class="number">0</span>.<span class="ident">lock</span>().<span class="kw">await</span>.<span class="ident">push</span>(<span class="string">&quot;state name&quot;</span>.<span class="ident">to_string</span>())
         }
         <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_state_canonical_alias</span>(
             <span class="kw-2">&amp;</span><span class="self">self</span>,
-            <span class="kw">_</span>: <span class="ident">RoomState</span>,
+            <span class="kw">_</span>: <span class="ident">Room</span>,
             <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncStateEvent</span><span class="op">&lt;</span><span class="ident">CanonicalAliasEventContent</span><span class="op">&gt;</span>,
         ) {
             <span class="self">self</span>.<span class="number">0</span>.<span class="ident">lock</span>().<span class="kw">await</span>.<span class="ident">push</span>(<span class="string">&quot;state canonical&quot;</span>.<span class="ident">to_string</span>())
         }
-        <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_state_aliases</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">RoomState</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncStateEvent</span><span class="op">&lt;</span><span class="ident">AliasesEventContent</span><span class="op">&gt;</span>) {
+        <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_state_aliases</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">Room</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncStateEvent</span><span class="op">&lt;</span><span class="ident">AliasesEventContent</span><span class="op">&gt;</span>) {
             <span class="self">self</span>.<span class="number">0</span>.<span class="ident">lock</span>().<span class="kw">await</span>.<span class="ident">push</span>(<span class="string">&quot;state aliases&quot;</span>.<span class="ident">to_string</span>())
         }
-        <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_state_avatar</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">RoomState</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncStateEvent</span><span class="op">&lt;</span><span class="ident">AvatarEventContent</span><span class="op">&gt;</span>) {
+        <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_state_avatar</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">Room</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncStateEvent</span><span class="op">&lt;</span><span class="ident">AvatarEventContent</span><span class="op">&gt;</span>) {
             <span class="self">self</span>.<span class="number">0</span>.<span class="ident">lock</span>().<span class="kw">await</span>.<span class="ident">push</span>(<span class="string">&quot;state avatar&quot;</span>.<span class="ident">to_string</span>())
         }
         <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_state_power_levels</span>(
             <span class="kw-2">&amp;</span><span class="self">self</span>,
-            <span class="kw">_</span>: <span class="ident">RoomState</span>,
+            <span class="kw">_</span>: <span class="ident">Room</span>,
             <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncStateEvent</span><span class="op">&lt;</span><span class="ident">PowerLevelsEventContent</span><span class="op">&gt;</span>,
         ) {
             <span class="self">self</span>.<span class="number">0</span>.<span class="ident">lock</span>().<span class="kw">await</span>.<span class="ident">push</span>(<span class="string">&quot;state power&quot;</span>.<span class="ident">to_string</span>())
         }
-        <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_state_join_rules</span>(
-            <span class="kw-2">&amp;</span><span class="self">self</span>,
-            <span class="kw">_</span>: <span class="ident">RoomState</span>,
-            <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncStateEvent</span><span class="op">&lt;</span><span class="ident">JoinRulesEventContent</span><span class="op">&gt;</span>,
-        ) {
+        <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_state_join_rules</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">Room</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncStateEvent</span><span class="op">&lt;</span><span class="ident">JoinRulesEventContent</span><span class="op">&gt;</span>) {
             <span class="self">self</span>.<span class="number">0</span>.<span class="ident">lock</span>().<span class="kw">await</span>.<span class="ident">push</span>(<span class="string">&quot;state rules&quot;</span>.<span class="ident">to_string</span>())
         }
 
@@ -1489,7 +1379,7 @@
         <span class="doccomment">/// Fires when `Client` receives a `AnyStrippedStateEvent::StrippedRoomMember` event.</span>
         <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_stripped_state_member</span>(
             <span class="kw-2">&amp;</span><span class="self">self</span>,
-            <span class="kw">_</span>: <span class="ident">RoomState</span>,
+            <span class="kw">_</span>: <span class="ident">Room</span>,
             <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">StrippedStateEvent</span><span class="op">&lt;</span><span class="ident">MemberEventContent</span><span class="op">&gt;</span>,
             <span class="kw">_</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">MemberEventContent</span><span class="op">&gt;</span>,
         ) {
@@ -1499,17 +1389,13 @@
                 .<span class="ident">push</span>(<span class="string">&quot;stripped state member&quot;</span>.<span class="ident">to_string</span>())
         }
         <span class="doccomment">/// Fires when `Client` receives a `AnyStrippedStateEvent::StrippedRoomName` event.</span>
-        <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_stripped_state_name</span>(
-            <span class="kw-2">&amp;</span><span class="self">self</span>,
-            <span class="kw">_</span>: <span class="ident">RoomState</span>,
-            <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">StrippedStateEvent</span><span class="op">&lt;</span><span class="ident">NameEventContent</span><span class="op">&gt;</span>,
-        ) {
+        <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_stripped_state_name</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">Room</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">StrippedStateEvent</span><span class="op">&lt;</span><span class="ident">NameEventContent</span><span class="op">&gt;</span>) {
             <span class="self">self</span>.<span class="number">0</span>.<span class="ident">lock</span>().<span class="kw">await</span>.<span class="ident">push</span>(<span class="string">&quot;stripped state name&quot;</span>.<span class="ident">to_string</span>())
         }
         <span class="doccomment">/// Fires when `Client` receives a `AnyStrippedStateEvent::StrippedRoomCanonicalAlias` event.</span>
         <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_stripped_state_canonical_alias</span>(
             <span class="kw-2">&amp;</span><span class="self">self</span>,
-            <span class="kw">_</span>: <span class="ident">RoomState</span>,
+            <span class="kw">_</span>: <span class="ident">Room</span>,
             <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">StrippedStateEvent</span><span class="op">&lt;</span><span class="ident">CanonicalAliasEventContent</span><span class="op">&gt;</span>,
         ) {
             <span class="self">self</span>.<span class="number">0</span>
@@ -1520,7 +1406,7 @@
         <span class="doccomment">/// Fires when `Client` receives a `AnyStrippedStateEvent::StrippedRoomAliases` event.</span>
         <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_stripped_state_aliases</span>(
             <span class="kw-2">&amp;</span><span class="self">self</span>,
-            <span class="kw">_</span>: <span class="ident">RoomState</span>,
+            <span class="kw">_</span>: <span class="ident">Room</span>,
             <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">StrippedStateEvent</span><span class="op">&lt;</span><span class="ident">AliasesEventContent</span><span class="op">&gt;</span>,
         ) {
             <span class="self">self</span>.<span class="number">0</span>
@@ -1531,7 +1417,7 @@
         <span class="doccomment">/// Fires when `Client` receives a `AnyStrippedStateEvent::StrippedRoomAvatar` event.</span>
         <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_stripped_state_avatar</span>(
             <span class="kw-2">&amp;</span><span class="self">self</span>,
-            <span class="kw">_</span>: <span class="ident">RoomState</span>,
+            <span class="kw">_</span>: <span class="ident">Room</span>,
             <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">StrippedStateEvent</span><span class="op">&lt;</span><span class="ident">AvatarEventContent</span><span class="op">&gt;</span>,
         ) {
             <span class="self">self</span>.<span class="number">0</span>
@@ -1542,7 +1428,7 @@
         <span class="doccomment">/// Fires when `Client` receives a `AnyStrippedStateEvent::StrippedRoomPowerLevels` event.</span>
         <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_stripped_state_power_levels</span>(
             <span class="kw-2">&amp;</span><span class="self">self</span>,
-            <span class="kw">_</span>: <span class="ident">RoomState</span>,
+            <span class="kw">_</span>: <span class="ident">Room</span>,
             <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">StrippedStateEvent</span><span class="op">&lt;</span><span class="ident">PowerLevelsEventContent</span><span class="op">&gt;</span>,
         ) {
             <span class="self">self</span>.<span class="number">0</span>.<span class="ident">lock</span>().<span class="kw">await</span>.<span class="ident">push</span>(<span class="string">&quot;stripped state power&quot;</span>.<span class="ident">to_string</span>())
@@ -1550,46 +1436,42 @@
         <span class="doccomment">/// Fires when `Client` receives a `AnyStrippedStateEvent::StrippedRoomJoinRules` event.</span>
         <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_stripped_state_join_rules</span>(
             <span class="kw-2">&amp;</span><span class="self">self</span>,
-            <span class="kw">_</span>: <span class="ident">RoomState</span>,
+            <span class="kw">_</span>: <span class="ident">Room</span>,
             <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">StrippedStateEvent</span><span class="op">&lt;</span><span class="ident">JoinRulesEventContent</span><span class="op">&gt;</span>,
         ) {
             <span class="self">self</span>.<span class="number">0</span>.<span class="ident">lock</span>().<span class="kw">await</span>.<span class="ident">push</span>(<span class="string">&quot;stripped state rules&quot;</span>.<span class="ident">to_string</span>())
         }
 
-        <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_non_room_presence</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">RoomState</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">PresenceEvent</span>) {
+        <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_non_room_presence</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">Room</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">PresenceEvent</span>) {
             <span class="self">self</span>.<span class="number">0</span>.<span class="ident">lock</span>().<span class="kw">await</span>.<span class="ident">push</span>(<span class="string">&quot;presence&quot;</span>.<span class="ident">to_string</span>())
         }
         <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_non_room_ignored_users</span>(
             <span class="kw-2">&amp;</span><span class="self">self</span>,
-            <span class="kw">_</span>: <span class="ident">RoomState</span>,
+            <span class="kw">_</span>: <span class="ident">Room</span>,
             <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">BasicEvent</span><span class="op">&lt;</span><span class="ident">IgnoredUserListEventContent</span><span class="op">&gt;</span>,
         ) {
             <span class="self">self</span>.<span class="number">0</span>.<span class="ident">lock</span>().<span class="kw">await</span>.<span class="ident">push</span>(<span class="string">&quot;account ignore&quot;</span>.<span class="ident">to_string</span>())
         }
-        <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_non_room_push_rules</span>(
-            <span class="kw-2">&amp;</span><span class="self">self</span>,
-            <span class="kw">_</span>: <span class="ident">RoomState</span>,
-            <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">BasicEvent</span><span class="op">&lt;</span><span class="ident">PushRulesEventContent</span><span class="op">&gt;</span>,
-        ) {
+        <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_non_room_push_rules</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">Room</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">BasicEvent</span><span class="op">&lt;</span><span class="ident">PushRulesEventContent</span><span class="op">&gt;</span>) {
             <span class="self">self</span>.<span class="number">0</span>.<span class="ident">lock</span>().<span class="kw">await</span>.<span class="ident">push</span>(<span class="string">&quot;account push rules&quot;</span>.<span class="ident">to_string</span>())
         }
         <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_non_room_fully_read</span>(
             <span class="kw-2">&amp;</span><span class="self">self</span>,
-            <span class="kw">_</span>: <span class="ident">RoomState</span>,
+            <span class="kw">_</span>: <span class="ident">Room</span>,
             <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncEphemeralRoomEvent</span><span class="op">&lt;</span><span class="ident">FullyReadEventContent</span><span class="op">&gt;</span>,
         ) {
             <span class="self">self</span>.<span class="number">0</span>.<span class="ident">lock</span>().<span class="kw">await</span>.<span class="ident">push</span>(<span class="string">&quot;account read&quot;</span>.<span class="ident">to_string</span>())
         }
         <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_non_room_typing</span>(
             <span class="kw-2">&amp;</span><span class="self">self</span>,
-            <span class="kw">_</span>: <span class="ident">RoomState</span>,
+            <span class="kw">_</span>: <span class="ident">Room</span>,
             <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncEphemeralRoomEvent</span><span class="op">&lt;</span><span class="ident">TypingEventContent</span><span class="op">&gt;</span>,
         ) {
             <span class="self">self</span>.<span class="number">0</span>.<span class="ident">lock</span>().<span class="kw">await</span>.<span class="ident">push</span>(<span class="string">&quot;typing event&quot;</span>.<span class="ident">to_string</span>())
         }
         <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_non_room_receipt</span>(
             <span class="kw-2">&amp;</span><span class="self">self</span>,
-            <span class="kw">_</span>: <span class="ident">RoomState</span>,
+            <span class="kw">_</span>: <span class="ident">Room</span>,
             <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">SyncEphemeralRoomEvent</span><span class="op">&lt;</span><span class="ident">ReceiptEventContent</span><span class="op">&gt;</span>,
         ) {
             <span class="self">self</span>.<span class="number">0</span>.<span class="ident">lock</span>().<span class="kw">await</span>.<span class="ident">push</span>(<span class="string">&quot;receipt event&quot;</span>.<span class="ident">to_string</span>())
@@ -1597,10 +1479,10 @@
         <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_presence_event</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">PresenceEvent</span>) {
             <span class="self">self</span>.<span class="number">0</span>.<span class="ident">lock</span>().<span class="kw">await</span>.<span class="ident">push</span>(<span class="string">&quot;presence event&quot;</span>.<span class="ident">to_string</span>())
         }
-        <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_unrecognized_event</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">RoomState</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">RawJsonValue</span>) {
+        <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_unrecognized_event</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">Room</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">RawJsonValue</span>) {
             <span class="self">self</span>.<span class="number">0</span>.<span class="ident">lock</span>().<span class="kw">await</span>.<span class="ident">push</span>(<span class="string">&quot;unrecognized event&quot;</span>.<span class="ident">to_string</span>())
         }
-        <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_custom_event</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">RoomState</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">CustomEvent</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) {
+        <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_custom_event</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">Room</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">CustomEvent</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) {
             <span class="self">self</span>.<span class="number">0</span>.<span class="ident">lock</span>().<span class="kw">await</span>.<span class="ident">push</span>(<span class="string">&quot;custom event&quot;</span>.<span class="ident">to_string</span>())
         }
     }
@@ -1753,5 +1635,5 @@
     }
 }
 </pre></div>
-</section><section id="search" class="content hidden"></section><section class="footer"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="matrix_sdk_base"></div>
-    <script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script><script defer src="../../../search-index.js"></script></body></html>
+</section><section id="search" class="content hidden"></section><section class="footer"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="matrix_sdk_base" data-search-js="../../../search-index.js"></div>
+    <script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script></body></html>

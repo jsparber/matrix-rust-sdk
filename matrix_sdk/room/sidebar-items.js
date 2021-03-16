@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Common","A struct containing methodes that are common for Joined, Invited and Left Rooms"],["Invited","A room in the invited state."],["Joined","A room in the joined state."],["Left","A room in the left state."]]});
