@@ -1,4 +1,5 @@
 use matrix_sdk_common::api::r0::{
+    media::get_content_thumbnail,
     membership::{get_member_events, join_room_by_id, leave_room},
     message::get_message_events,
 };
@@ -56,6 +57,58 @@ impl Common {
         let _resposne = self.client.send(request, None).await?;
 
         Ok(())
+    }
+
+    /// Gets the avatar of this room, if set.
+    ///
+    /// Returns the avatar at the desired `width`x`height`.
+    /// The returned image may be larger than the size specified.
+    ///
+    /// # Arguments
+    ///
+    /// * `width` - The desired width of the avatar.
+    ///
+    /// * `height` - The desired height of the avatar.
+    ///
+    /// # Example
+    /// ```no_run
+    /// # use futures::executor::block_on;
+    /// # use matrix_sdk::Client;
+    /// # use matrix_sdk::identifiers::room_id;
+    /// # use url::Url;
+    /// # let homeserver = Url::parse("http://example.com").unwrap();
+    /// # block_on(async {
+    /// # let user = "example";
+    /// let client = Client::new(homeserver).unwrap();
+    /// client.login(user, "password", None, None).await.unwrap();
+    /// let room_id = room_id!("!roomid:example.com");
+    /// let room = client
+    ///     .get_joined_room(&room_id)
+    ///     .unwrap();
+    /// if let Some(avatar) = room.avatar(96, 96).await.unwrap() {
+    ///     std::fs::write("avatar.png", avatar.file);
+    /// }
+    /// # })
+    /// ```
+    pub async fn avatar(
+        &self,
+        width: u32,
+        height: u32,
+    ) -> Result<Option<get_content_thumbnail::Response>> {
+        if let Some((server_name, media_id)) =
+            self.avatar_url().and_then(|url| crate::parse_mxc(&url))
+        {
+            // TODO: try to offer the avatar from cache, requires avatar cache
+            let request = get_content_thumbnail::Request::new(
+                &media_id,
+                &server_name,
+                width.into(),
+                height.into(),
+            );
+            Ok(Some(self.client.send(request, None).await?))
+        } else {
+            Ok(None)
+        }
     }
 
     /// Sends a request to `/_matrix/client/r0/rooms/{room_id}/messages` and returns
