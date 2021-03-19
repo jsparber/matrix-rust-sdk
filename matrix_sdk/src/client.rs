@@ -69,7 +69,7 @@ use matrix_sdk_common::{
         device::{delete_devices, get_devices},
         directory::{get_public_rooms, get_public_rooms_filtered},
         filter::{create_filter::Request as FilterUploadRequest, FilterDefinition},
-        media::create_content,
+        media::{create_content, get_content_thumbnail},
         membership::{join_room_by_id, join_room_by_id_or_alias},
         message::send_message_event,
         profile::{get_avatar_url, get_display_name, set_avatar_url, set_display_name},
@@ -498,6 +498,53 @@ impl Client {
         let request = get_avatar_url::Request::new(&user_id);
         let response = self.send(request, None).await?;
         Ok(response.avatar_url)
+    }
+
+    /// Gets the avatar of the owner of the client, if set.
+    ///
+    /// Returns the users avatar at the desired `width`x`height`.
+    /// The returned image may be larger than the size specified.
+    ///
+    /// # Arguments
+    ///
+    /// * `width` - The desired width of the avatar.
+    /// * `height` - The desired height of the avatar.
+    ///
+    /// # Example
+    /// ```no_run
+    /// # use futures::executor::block_on;
+    /// # use matrix_sdk::Client;
+    /// # use url::Url;
+    /// # let homeserver = Url::parse("http://example.com").unwrap();
+    /// # block_on(async {
+    /// # let user = "example";
+    /// let client = Client::new(homeserver).unwrap();
+    /// client.login(user, "password", None, None).await.unwrap();
+    ///
+    /// if let Some(avatar) = client.avatar(96, 96).await.unwrap() {
+    ///     std::fs::write("avatar.png", avatar.file);
+    /// }
+    /// # })
+    /// ```
+    pub async fn avatar(
+        &self,
+        width: u32,
+        height: u32,
+    ) -> Result<Option<get_content_thumbnail::Response>> {
+        let avatar_url = self.avatar_url().await?;
+
+        if let Some((server_name, media_id)) = avatar_url.and_then(|url| crate::parse_mxc(&url)) {
+            // TODO: try to offer the avatar from cache, requires avatar cache
+            let request = get_content_thumbnail::Request::new(
+                &media_id,
+                &server_name,
+                width.into(),
+                height.into(),
+            );
+            Ok(Some(self.send(request, None).await?))
+        } else {
+            Ok(None)
+        }
     }
 
     /// Get a reference to the store.
