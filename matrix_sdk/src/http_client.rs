@@ -260,7 +260,7 @@ async fn send_request(
         let response = client
             .execute(request)
             .await
-            .map_err(|e| RetryError::Transient(HttpError::Reqwest(e)))?;
+            .map_err(|e| RetryError::Permanent(HttpError::Reqwest(e)))?;
 
         let status_code = response.status();
         // TODO TOO_MANY_REQUESTS will have a retry timeout which we should
